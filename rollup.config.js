@@ -25,6 +25,7 @@ function createOptions({ directory, target }) {
       entries: [
         { find: '@utils/get-hash-info', replacement: '@utils/get-hash-info.browser' }
       , { find: '@utils/get-file', replacement: '@utils/get-file.browser' }
+      , { find: '@utils/fetch', replacement: '@utils/fetch.browser' }
       ]
     })
   , typescript({ target })

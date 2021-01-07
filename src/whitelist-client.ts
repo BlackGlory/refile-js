@@ -1,4 +1,4 @@
-import { fetch } from 'cross-fetch'
+import { fetch } from '@utils/fetch'
 import { password } from '@utils/password'
 import { get, put, del } from 'extra-request'
 import { url, pathname, signal } from 'extra-request/lib/es2018/transformers'
