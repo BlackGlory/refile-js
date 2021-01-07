@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/BlackGlory/refile-js/compare/v0.1.3...v0.1.4) (2021-01-07)
+
+
+### Features
+
+* replace node-fetch with extra-fetch ([2d3b786](https://github.com/BlackGlory/refile-js/commit/2d3b7861f21bc0c3598d21ca1c37fb692e10657e))
+
 ### [0.1.3](https://github.com/BlackGlory/refile-js/compare/v0.1.2...v0.1.3) (2021-01-07)
 
 
