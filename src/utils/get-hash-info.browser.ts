@@ -38,13 +38,16 @@ async function getHashList(stream: ReadableStream) {
 }
 
 function createHash(): ProgressiveHash<string> {
-  const data: number[] = []
+  let pos = 0
+  const data = new Uint8Array(HASH_BLOCK_SIZE)
+
   return {
     update(buffer: Uint8Array): void {
-      data.push(...buffer)
+      buffer.forEach((x, i) => data[pos + i] = x)
+      pos += buffer.length
     }
   , async digest(): Promise<string> {
-      const hashBuffer = await crypto.subtle.digest('SHA-256', new Uint8Array(data))
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data)
       return bufferToHex(hashBuffer)
     }
   }
