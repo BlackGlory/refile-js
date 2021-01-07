@@ -734,6 +734,13 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
   integrity sha512-Aq58f5HiWdyDlFffbbSjAlv596h/cOnt2DO1w3DOC7OJ5EHs0hd/nycJfiu9RJbT6Yk6F1knnRRXNSpxoIVZ9Q==
 
+"@rollup/plugin-alias@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.1.tgz#bb96cf37fefeb0a953a6566c284855c7d1cd290c"
+  integrity sha512-hNcQY4bpBUIvxekd26DBPgF7BT4mKVNDF5tBG4Zi+3IgwLxGYRY0itHs9D0oLVwXM5pvJDWJlBQro+au8WaUWw==
+  dependencies:
+    slash "^3.0.0"
+
 "@rollup/plugin-commonjs@^17.0.0":
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-17.0.0.tgz#2ae2228354cf0fbba6cf9f06f30b2c66a974324c"
@@ -2406,10 +2413,10 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extra-request@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/extra-request/-/extra-request-0.2.7.tgz#3678c443e536d26c441078f72dbfe401e41f1aa3"
-  integrity sha512-69x08UBRHiZW6MA78524NZJAJvCU8eZWn/2z+NN5WTiNs5NnLZ0toMObe6QqCeP7V8jYpgSmaaXI9LKYFumCGw==
+extra-request@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/extra-request/-/extra-request-0.2.8.tgz#c7f99305ecfcd4a6a347d56b9f82dfe54e332e3f"
+  integrity sha512-kzbqcmTGVdziAS3m+BfGhnCAQtUY0X3Y6dsC6A1EKf2wOnFalvqs6oQExtyLik/yJmwCF3A8jPH1PnkuJQWqIw==
   dependencies:
     "@blackglory/types" "^0.2.4"
     "@types/node" "^14.14.20"

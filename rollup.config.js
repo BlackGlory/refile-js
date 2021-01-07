@@ -4,19 +4,41 @@ import resolve from '@rollup/plugin-node-resolve'
 import json from '@rollup/plugin-json'
 import { terser } from 'rollup-plugin-terser'
 import analyze from 'rollup-plugin-analyzer'
+import alias from '@rollup/plugin-alias'
 
 const UMD_NAME = 'Refile'
 
+export default [
+  ...createOptions({
+    directory: 'es2015'
+  , target: 'ES2015'
+  })
+, ...createOptions({
+    directory: 'es2018'
+  , target: 'ES2018'
+  })
+]
+
 function createOptions({ directory, target }) {
+  const commonPlugins = [
+    alias({
+      entries: [
+        { find: '@utils/get-hash-info', replacement: '@utils/get-hash-info.browser' }
+      , { find: '@utils/get-file', replacement: '@utils/get-file.browser' }
+      ]
+    })
+  , typescript({ target })
+  , json()
+  , resolve({ browser: true })
+  , commonjs()
+  ]
+
   return [
     {
       input: 'src/index.ts'
     , output: createOutput('index')
     , plugins: [
-        typescript({ target })
-      , json()
-      , resolve({ browser: true })
-      , commonjs()
+        ...commonPlugins
       , analyze({ summaryOnly: true })
       ]
     }
@@ -24,10 +46,7 @@ function createOptions({ directory, target }) {
       input: 'src/index.ts'
     , output: createMinification('index')
     , plugins: [
-        typescript({ target })
-      , json()
-      , resolve({ browser: true })
-      , commonjs()
+        ...commonPlugins
       , terser()
       ]
     }
@@ -48,7 +67,7 @@ function createOptions({ directory, target }) {
       }
     ]
   }
-  k
+
   function createMinification(name) {
     return [
       {
@@ -65,14 +84,3 @@ function createOptions({ directory, target }) {
     ]
   }
 }
-
-export default [
-  ...createOptions({
-    directory: 'es2015'
-  , target: 'ES2015'
-  })
-, ...createOptions({
-    directory: 'es2018'
-  , target: 'ES2018'
-  })
-]

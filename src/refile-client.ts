@@ -28,7 +28,7 @@ export interface RefileClientRequestOptionsWithoutToken {
 export class RefileClient {
   constructor(private options: RefileClientOptions) {}
 
-  async uploadFile(file: Blob | string, options: RefileClientRequestOptions = {}): Promise<void> {
+  async uploadFile(file: Blob | string, options: RefileClientRequestOptionsWithoutToken = {}): Promise<void> {
     const { hash, hashList } = await getHashInfo(file)
 
     const req = put(

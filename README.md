@@ -33,7 +33,7 @@ interface RefileClientRequestOptionsWithoutToken {
 #### uploadFile
 
 ```ts
-RefileClient#uploadFile(file: Blob | string): Promise<void>
+RefileClient#uploadFile(file: Blob | string, options?: RefileClientRequestOptionsWithoutToken): Promise<void>
 ```
 
 #### getFileInfo
