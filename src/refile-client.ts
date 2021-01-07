@@ -1,4 +1,4 @@
-import { fetch } from '@utils/fetch'
+import { fetch } from 'extra-fetch'
 import { put, get, del } from 'extra-request'
 import { url, pathname, searchParams, signal, formDataField } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
