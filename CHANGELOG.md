@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/BlackGlory/refile-js/compare/v0.1.1...v0.1.2) (2021-01-07)
+
+
+### Features
+
+* remove cross-fetch ([f361c04](https://github.com/BlackGlory/refile-js/commit/f361c0411badc65fe5fa6cb292e6a80b5b811b3c))
+
 ### [0.1.1](https://github.com/BlackGlory/refile-js/compare/v0.1.0...v0.1.1) (2021-01-07)
 
 
