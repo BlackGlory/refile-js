@@ -2427,6 +2427,15 @@ extra-fetch@^0.1.0:
     formdata-node "^2.4.0"
     node-fetch "^2.6.1"
 
+extra-fetch@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/extra-fetch/-/extra-fetch-0.1.1.tgz#ba3dfe981245f1d933653028f6dfb6202e6b4379"
+  integrity sha512-DIwIsbgtD6f9fAXcLc/8gAJD3Gt9oPfSGV+l0pcy/n8X1uieIT8WgfmTFAzkH2SAvl5oL6SzEC2fFnmgk1S/0A==
+  dependencies:
+    abort-controller "^3.0.0"
+    formdata-node "^2.4.0"
+    node-fetch "^2.6.1"
+
 extra-request@^0.2.10:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/extra-request/-/extra-request-0.2.10.tgz#ec152e6594314ebaa4d92b464d445b15d783293a"
