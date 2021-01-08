@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/BlackGlory/refile-js/compare/v0.1.7...v0.1.8) (2021-01-08)
+
+
+### Bug Fixes
+
+* add domexception for fetch-blob in Node.js ([18f8df2](https://github.com/BlackGlory/refile-js/commit/18f8df2d0db5b4167304c057ce749372713c9657))
+
 ### [0.1.7](https://github.com/BlackGlory/refile-js/compare/v0.1.6...v0.1.7) (2021-01-08)
 
 
