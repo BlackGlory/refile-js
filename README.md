@@ -10,6 +10,12 @@ yarn add @blackglory/refile-js
 
 ## API
 
+### getFileHash
+
+```ts
+getFileHash(file: Blob | string): Promise<string>
+```
+
 ### RefileClient
 
 ```ts
