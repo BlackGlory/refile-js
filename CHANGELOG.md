@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/BlackGlory/refile-js/compare/v0.1.5...v0.1.6) (2021-01-08)
+
+
+### Bug Fixes
+
+* uploadFile in Node.js ([32513a6](https://github.com/BlackGlory/refile-js/commit/32513a648c8bff60fc6197688cf69bbcff4c8615))
+
 ### [0.1.5](https://github.com/BlackGlory/refile-js/compare/v0.1.4...v0.1.5) (2021-01-07)
 
 ### [0.1.4](https://github.com/BlackGlory/refile-js/compare/v0.1.3...v0.1.4) (2021-01-07)
