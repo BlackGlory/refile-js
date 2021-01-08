@@ -47,7 +47,7 @@ function createHash(): ProgressiveHash<string> {
       pos += buffer.length
     }
   , async digest(): Promise<string> {
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data.slice(0, pos))
       return bufferToHex(hashBuffer)
     }
   }
