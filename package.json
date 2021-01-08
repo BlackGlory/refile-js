@@ -66,9 +66,10 @@
   },
   "dependencies": {
     "@blackglory/types": "^0.2.4",
-    "extra-fetch": "^0.1.1",
-    "extra-request": "^0.2.10",
+    "extra-fetch": "^0.1.6",
+    "extra-request": "^0.3.0",
     "extra-response": "^0.2.2",
+    "fetch-blob": "^2.1.1",
     "iterable-operator": "^0.12.6",
     "split-hash": "^0.1.2"
   }
