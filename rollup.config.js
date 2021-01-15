@@ -5,6 +5,7 @@ import json from '@rollup/plugin-json'
 import { terser } from 'rollup-plugin-terser'
 import analyze from 'rollup-plugin-analyzer'
 import alias from '@rollup/plugin-alias'
+import replace from '@rollup/plugin-replace'
 
 const UMD_NAME = 'Refile'
 
@@ -26,6 +27,10 @@ function createOptions({ directory, target }) {
         { find: '@utils/get-hash-info', replacement: '@utils/get-hash-info.browser' }
       , { find: '@utils/get-file', replacement: '@utils/get-file.browser' }
       ]
+    })
+  , replace({
+      'Object.defineProperty(exports, "__esModule", { value: true });': ''
+    , delimiters: ['\n', '\n']
     })
   , typescript({ target })
   , json()
