@@ -151,7 +151,7 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
-  async listItemsByFile(
+  async getItemIdsByFile(
     fileHash: string
   , namespace: string
   , options: RefileClientRequestOptions = {}

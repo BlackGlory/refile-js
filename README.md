@@ -88,10 +88,10 @@ RefileClient#getAllItemIds(namespace: string, options?: RefileClientRequestOptio
 RefileClient#getFileHashesByItem(namespace: string, itemId: string, options?: RefileClientRequestOptions): Promise<string[]>
 ```
 
-#### listItemsByFile
+#### getItemIdsByFile
 
 ```ts
-RefileClient#listItemsByFile(fileHash: string, namespace: string, options?: RefileClientRequestOptions): Promise<string[]>
+RefileClient#getItemIdsByFile(fileHash: string, namespace: string, options?: RefileClientRequestOptions): Promise<string[]>
 ```
 
 ### RefileManager
