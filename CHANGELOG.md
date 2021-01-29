@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/BlackGlory/refile-js/compare/v0.1.12...v0.2.0) (2021-01-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* RefileClient#listFilesByItem => getFileHashesByItem
+* RefileClient#listItems => RefileClient#getAllItemIds
+* RefileClient#listNamespaces => getAllNamespaces
+
+### Features
+
+* rename listFilesByItem => getFileHashesByItem ([101f13b](https://github.com/BlackGlory/refile-js/commit/101f13b3c90288b3c4f5a73b8fbca9f74861de26))
+* rename listItems => getAllItemIds ([ee0e25e](https://github.com/BlackGlory/refile-js/commit/ee0e25e9a3c407fefc16b8c19b00a883f43b0186))
+* rename listItemsByFile => getItemIdsByFile ([cb2d397](https://github.com/BlackGlory/refile-js/commit/cb2d397bc36516778a658808f327c23891ec7db1))
+* rename listNamespaces => getAllNamespaces ([09a3222](https://github.com/BlackGlory/refile-js/commit/09a32226e005cd94b357a70354efc731a0af3e68))
+
 ### [0.1.12](https://github.com/BlackGlory/refile-js/compare/v0.1.11...v0.1.12) (2021-01-26)
 
 ### [0.1.11](https://github.com/BlackGlory/refile-js/compare/v0.1.10...v0.1.11) (2021-01-20)
