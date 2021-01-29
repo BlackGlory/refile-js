@@ -104,7 +104,7 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
-  async listNamespaces(options: RefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
+  async getAllNamespaces(options: RefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/refile/namespaces')

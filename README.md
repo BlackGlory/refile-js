@@ -70,10 +70,10 @@ RefileClient#removeReference(namespace: string, itemId: string, fileHash: string
 RefileClient#removeReferencesByItem(namespace: string, itemId: string, options?: RefileClientRequestOptions): Promise<void>
 ```
 
-#### listNamespaces
+#### getAllNamespaces
 
 ```ts
-RefileClient#listNamespaces(options?: RefileClientRequestOptionsWithoutToken): Promise<string[]>
+RefileClient#getAllNamespaces(options?: RefileClientRequestOptionsWithoutToken): Promise<string[]>
 ```
 
 #### listItems

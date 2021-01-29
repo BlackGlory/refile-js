@@ -73,10 +73,10 @@ describe('RefileClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('listNamespaces(): Promise<string[]>', async () => {
+  it('getAllNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
-    const result = client.listNamespaces()
+    const result = client.getAllNamespaces()
     const proResult = await result
 
     expect(result).toBePromise()
