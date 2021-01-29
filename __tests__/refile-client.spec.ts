@@ -94,12 +94,12 @@ describe('RefileClient', () => {
     expect(proResult).toEqual(['id'])
   })
 
-  it('listFilesByItem(namespace: string, itemId: string): Promise<string[]>', async () => {
+  it('getFileHashesByItem(namespace: string, itemId: string): Promise<string[]>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const itemId = 'id'
 
-    const result = client.listFilesByItem(namespace, itemId)
+    const result = client.getFileHashesByItem(namespace, itemId)
     const proResult = await result
 
     expect(result).toBePromise()

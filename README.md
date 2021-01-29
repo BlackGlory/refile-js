@@ -82,10 +82,10 @@ RefileClient#getAllNamespaces(options?: RefileClientRequestOptionsWithoutToken):
 RefileClient#getAllItemIds(namespace: string, options?: RefileClientRequestOptions): Promise<string[]>
 ```
 
-#### listFilesByItem
+#### getFileHashesByItem
 
 ```ts
-RefileClient#listFilesByItem(namespace: string, itemId: string, options?: RefileClientRequestOptions): Promise<string[]>
+RefileClient#getFileHashesByItem(namespace: string, itemId: string, options?: RefileClientRequestOptions): Promise<string[]>
 ```
 
 #### listItemsByFile

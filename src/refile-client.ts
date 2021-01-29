@@ -133,7 +133,7 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
-  async listFilesByItem(
+  async getFileHashesByItem(
     namespace: string
   , itemId: string
   , options: RefileClientRequestOptions = {}
