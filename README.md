@@ -76,10 +76,10 @@ RefileClient#removeReferencesByItem(namespace: string, itemId: string, options?:
 RefileClient#getAllNamespaces(options?: RefileClientRequestOptionsWithoutToken): Promise<string[]>
 ```
 
-#### listItems
+#### getAllItemIds
 
 ```ts
-RefileClient#listItems(namespace: string, options?: RefileClientRequestOptions): Promise<string[]>
+RefileClient#getAllItemIds(namespace: string, options?: RefileClientRequestOptions): Promise<string[]>
 ```
 
 #### listFilesByItem

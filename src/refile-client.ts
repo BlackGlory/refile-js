@@ -116,7 +116,7 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
-  async listItems(
+  async getAllItemIds(
     namespace: string
   , options: RefileClientRequestOptions = {}
   ): Promise<string[]> {

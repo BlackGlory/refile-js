@@ -83,11 +83,11 @@ describe('RefileClient', () => {
     expect(proResult).toEqual(['namespace'])
   })
 
-  it('listItems(namespace: string): Promise<string[]>', async () => {
+  it('getAllItemIds(namespace: string): Promise<string[]>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
-    const result = client.listItems(namespace)
+    const result = client.getAllItemIds(namespace)
     const proResult = await result
 
     expect(result).toBePromise()
