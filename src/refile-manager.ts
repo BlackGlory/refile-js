@@ -3,13 +3,13 @@ import { WhitelistClient } from './whitelist-client'
 import { TokenPolicyClient } from './token-policy-client'
 import { TokenClient } from './token-client'
 
-export interface RefileManagerOptions {
+export interface IRefileManagerOptions {
   server: string
   adminPassword: string
 }
 
 export class RefileManager {
-  constructor(private options: RefileManagerOptions) {}
+  constructor(private options: IRefileManagerOptions) {}
 
   Blacklist = new BlacklistClient(this.options)
   Whitelist = new WhitelistClient(this.options)

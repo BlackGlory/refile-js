@@ -5,30 +5,30 @@ import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
 import { getFile } from '@utils/get-file'
 
-interface FileInfo {
+interface IFileInfo {
   hash: string
   location: string | null
   references: number
 }
 
-export interface RefileClientOptions {
+export interface IRefileClientOptions {
   server: string
   token?: string
 }
 
-export interface RefileClientRequestOptions {
+export interface IRefileClientRequestOptions {
   signal?: AbortSignal
   token?: string
 }
 
-export interface RefileClientRequestOptionsWithoutToken {
+export interface IRefileClientRequestOptionsWithoutToken {
   signal?: AbortSignal
 }
 
 export class RefileClient {
-  constructor(private options: RefileClientOptions) {}
+  constructor(private options: IRefileClientOptions) {}
 
-  async uploadFile(file: Blob | string, options: RefileClientRequestOptionsWithoutToken = {}): Promise<void> {
+  async uploadFile(file: Blob | string, options: IRefileClientRequestOptionsWithoutToken = {}): Promise<void> {
     const { hash, hashList } = await getHashInfo(file)
 
     const req = put(
@@ -42,7 +42,7 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
-  async getFileInfo(hash: string, options: RefileClientRequestOptions = {}): Promise<FileInfo> {
+  async getFileInfo(hash: string, options: IRefileClientRequestOptions = {}): Promise<IFileInfo> {
     const req = get(
       url(this.options.server)
     , pathname(`/refile/files/${hash}`)
@@ -51,14 +51,14 @@ export class RefileClient {
 
     return await fetch(req)
       .then(ok)
-      .then(toJSON) as FileInfo
+      .then(toJSON) as IFileInfo
   }
 
   async setReference(
     namespace: string
   , itemId: string
   , fileHash: string
-  , options: RefileClientRequestOptions = {}
+  , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
     const req = put(
@@ -75,7 +75,7 @@ export class RefileClient {
     namespace: string
   , itemId: string
   , fileHash: string
-  , options: RefileClientRequestOptions = {}
+  , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
     const req = del(
@@ -91,7 +91,7 @@ export class RefileClient {
   async removeReferencesByItem(
     namespace: string
   , itemId: string
-  , options: RefileClientRequestOptions = {}
+  , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
     const req = del(
@@ -104,7 +104,7 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
-  async getAllNamespaces(options: RefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
+  async getAllNamespaces(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/refile/namespaces')
@@ -118,7 +118,7 @@ export class RefileClient {
 
   async getAllItemIds(
     namespace: string
-  , options: RefileClientRequestOptions = {}
+  , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
     const token = options.token ?? this.options.token
     const req = get(
@@ -136,7 +136,7 @@ export class RefileClient {
   async getFileHashesByItem(
     namespace: string
   , itemId: string
-  , options: RefileClientRequestOptions = {}
+  , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
     const token = options.token ?? this.options.token
     const req = get(
@@ -154,7 +154,7 @@ export class RefileClient {
   async getItemIdsByFile(
     fileHash: string
   , namespace: string
-  , options: RefileClientRequestOptions = {}
+  , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
     const token = options.token ?? this.options.token
     const req = get(

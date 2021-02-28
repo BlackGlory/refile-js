@@ -3,7 +3,7 @@ import { password } from '@utils/password'
 import { get, put, del } from 'extra-request'
 import { url, pathname, json, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
-import type { RefileManagerOptions } from './refile-manager'
+import type { IRefileManagerOptions } from './refile-manager'
 import { RefileManagerRequestOptions } from './types'
 
 interface TokenPolicy {
@@ -13,7 +13,7 @@ interface TokenPolicy {
 }
 
 export class TokenPolicyClient {
-  constructor(private options: RefileManagerOptions) {}
+  constructor(private options: IRefileManagerOptions) {}
 
   async getIds(options: RefileManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
