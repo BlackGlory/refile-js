@@ -1,6 +1,6 @@
 import { fetch } from 'extra-fetch'
 import { put, get, del } from 'extra-request'
-import { url, pathname, searchParams, signal, formDataField } from 'extra-request/lib/es2018/transformers'
+import { url, pathname, searchParams, signal, formDataField, keepalive } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
 import { getFile } from '@utils/get-file'
@@ -14,15 +14,18 @@ interface IFileInfo {
 export interface IRefileClientOptions {
   server: string
   token?: string
+  keepalive?: boolean
 }
 
 export interface IRefileClientRequestOptions {
   signal?: AbortSignal
   token?: string
+  keepalive?: boolean
 }
 
 export interface IRefileClientRequestOptionsWithoutToken {
   signal?: AbortSignal
+  keepalive?: boolean
 }
 
 export class RefileClient {
@@ -37,6 +40,7 @@ export class RefileClient {
     , formDataField('hash', hashList)
     , formDataField('file', getFile(file))
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -47,6 +51,7 @@ export class RefileClient {
       url(this.options.server)
     , pathname(`/refile/files/${hash}`)
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -66,6 +71,7 @@ export class RefileClient {
     , pathname(`/refile/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -83,6 +89,7 @@ export class RefileClient {
     , pathname(`/refile/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -99,6 +106,7 @@ export class RefileClient {
     , pathname(`/refile/namespaces/${namespace}/items/${itemId}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -109,6 +117,7 @@ export class RefileClient {
       url(this.options.server)
     , pathname('/refile/namespaces')
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -126,6 +135,7 @@ export class RefileClient {
     , pathname(`/refile/namespaces/${namespace}/items`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -144,6 +154,7 @@ export class RefileClient {
     , pathname(`/refile/namespaces/${namespace}/items/${itemId}/files`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -162,6 +173,7 @@ export class RefileClient {
     , pathname(`/refile/files/${fileHash}/namespaces/${namespace}/items`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)

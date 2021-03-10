@@ -22,6 +22,7 @@ getFileHash(file: Blob | string): Promise<string>
 new RefileClient({
   server: string
 , token?: string
+, keepalive?: boolean
 })
 ```
 
@@ -29,10 +30,12 @@ new RefileClient({
 interface IRefileClientRequestOptions {
   signal?: AbortSignal
   token?: string
+  keepalive?: boolean
 }
 
 interface IRefileClientRequestOptionsWithoutToken {
   signal?: AbortSignal
+  keepalive?: boolean
 }
 ```
 
