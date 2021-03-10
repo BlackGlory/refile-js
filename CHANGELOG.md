@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/BlackGlory/refile-js/compare/v0.2.6...v0.2.7) (2021-03-10)
+
+
+### Features
+
+* add keepalive option ([60e40d0](https://github.com/BlackGlory/refile-js/commit/60e40d043de46b6ecbefde38e4262f3c8d6e725a))
+
 ### [0.2.6](https://github.com/BlackGlory/refile-js/compare/v0.2.5...v0.2.6) (2021-03-05)
 
 ### [0.2.5](https://github.com/BlackGlory/refile-js/compare/v0.2.4...v0.2.5) (2021-02-28)
