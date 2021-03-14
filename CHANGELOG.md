@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/BlackGlory/refile-js/compare/v0.2.7...v0.3.0) (2021-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename /api to /admin
+
+### Features
+
+* rename /api to /admin ([3e13ee1](https://github.com/BlackGlory/refile-js/commit/3e13ee17ec9c466638cc6b2f7ead1b5849e289b3))
+
 ### [0.2.7](https://github.com/BlackGlory/refile-js/compare/v0.2.6...v0.2.7) (2021-03-10)
 
 
