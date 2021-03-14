@@ -3,7 +3,7 @@ import { rest } from 'msw'
 import { badAuth, badJson } from '@test/utils'
 
 export const server = setupServer(
-  rest.get('/api/refile-with-token-policies', (req, res, ctx) => {
+  rest.get('/admin/refile-with-token-policies', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(
@@ -12,7 +12,7 @@ export const server = setupServer(
     )
   })
 
-, rest.get('/api/refile/:id/token-policies', (req, res, ctx) => {
+, rest.get('/admin/refile/:id/token-policies', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(
@@ -25,40 +25,40 @@ export const server = setupServer(
     )
   })
 
-, rest.put('/api/refile/:id/token-policies/write-token-required', (req, res, ctx) => {
+, rest.put('/admin/refile/:id/token-policies/write-token-required', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
     if (badJson(req)) return res(ctx.status(400))
 
     return res(ctx.status(204))
   })
 
-, rest.delete('/api/refile/:id/token-policies/write-token-required', (req, res, ctx) => {
+, rest.delete('/admin/refile/:id/token-policies/write-token-required', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))
   })
 
-, rest.put('/api/refile/:id/token-policies/read-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
-    if (badJson(req)) return res(ctx.status(400))
-
-    return res(ctx.status(204))
-  })
-
-, rest.delete('/api/refile/:id/token-policies/read-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
-
-    return res(ctx.status(204))
-  })
-
-, rest.put('/api/refile/:id/token-policies/delete-token-required', (req, res, ctx) => {
+, rest.put('/admin/refile/:id/token-policies/read-token-required', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
     if (badJson(req)) return res(ctx.status(400))
 
     return res(ctx.status(204))
   })
 
-, rest.delete('/api/refile/:id/token-policies/delete-token-required', (req, res, ctx) => {
+, rest.delete('/admin/refile/:id/token-policies/read-token-required', (req, res, ctx) => {
+    if (badAuth(req)) return res(ctx.status(401))
+
+    return res(ctx.status(204))
+  })
+
+, rest.put('/admin/refile/:id/token-policies/delete-token-required', (req, res, ctx) => {
+    if (badAuth(req)) return res(ctx.status(401))
+    if (badJson(req)) return res(ctx.status(400))
+
+    return res(ctx.status(204))
+  })
+
+, rest.delete('/admin/refile/:id/token-policies/delete-token-required', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))
