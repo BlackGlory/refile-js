@@ -1,8 +1,8 @@
-export interface RefileManagerRequestOptions {
+export interface IRefileManagerRequestOptions {
   signal?: AbortSignal
 }
 
-export interface HashInfo {
+export interface IHashInfo {
   hash: string
   hashList: string[]
 }

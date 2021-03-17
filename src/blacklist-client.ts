@@ -4,12 +4,12 @@ import { get, put, del } from 'extra-request'
 import { url, pathname, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import type { IRefileManagerOptions } from './refile-manager'
-import { RefileManagerRequestOptions } from './types'
+import { IRefileManagerRequestOptions } from './types'
 
 export class BlacklistClient {
   constructor(private options: IRefileManagerOptions) {}
 
-  async getIds(options: RefileManagerRequestOptions = {}): Promise<string[]> {
+  async getIds(options: IRefileManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/blacklist')
@@ -22,7 +22,7 @@ export class BlacklistClient {
       .then(toJSON) as string[]
   }
 
-  async add(id: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async add(id: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/blacklist/${id}`)
@@ -33,7 +33,7 @@ export class BlacklistClient {
     await fetch(req).then(ok)
   }
 
-  async remove(id: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async remove(id: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/blacklist/${id}`)

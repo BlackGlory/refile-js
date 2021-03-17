@@ -4,9 +4,9 @@ import { get, put, del } from 'extra-request'
 import { url, pathname, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import type { IRefileManagerOptions } from './refile-manager'
-import { RefileManagerRequestOptions } from './types'
+import { IRefileManagerRequestOptions } from './types'
 
-interface TokenInfo {
+interface ITokenInfo {
   token: string
   write: boolean
   read: boolean
@@ -16,7 +16,7 @@ interface TokenInfo {
 export class TokenClient {
   constructor(private options: IRefileManagerOptions) {}
 
-  async getIds(options: RefileManagerRequestOptions = {}): Promise<string[]> {
+  async getIds(options: IRefileManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/refile-with-tokens')
@@ -29,7 +29,7 @@ export class TokenClient {
       .then(toJSON) as string[]
   }
 
-  async getTokens(id: string, options: RefileManagerRequestOptions = {}): Promise<TokenInfo[]> {
+  async getTokens(id: string, options: IRefileManagerRequestOptions = {}): Promise<ITokenInfo[]> {
     const req = get(
       url(this.options.server)
     , pathname(`/admin/refile/${id}/tokens`)
@@ -39,10 +39,10 @@ export class TokenClient {
 
     return await fetch(req)
       .then(ok)
-      .then(toJSON) as TokenInfo[]
+      .then(toJSON) as ITokenInfo[]
   }
 
-  async addWriteToken(id: string, token: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async addWriteToken(id: string, token: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/refile/${id}/tokens/${token}/write`)
@@ -53,7 +53,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async removeWriteToken(id: string, token: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async removeWriteToken(id: string, token: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/refile/${id}/tokens/${token}/write`)
@@ -64,7 +64,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async addReadToken(id: string, token: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async addReadToken(id: string, token: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/refile/${id}/tokens/${token}/read`)
@@ -75,7 +75,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async removeReadToken(id: string, token: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async removeReadToken(id: string, token: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/refile/${id}/tokens/${token}/read`)
@@ -86,7 +86,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async addDeleteToken(id: string, token: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async addDeleteToken(id: string, token: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/refile/${id}/tokens/${token}/delete`)
@@ -97,7 +97,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async removeDeleteToken(id: string, token: string, options: RefileManagerRequestOptions = {}): Promise<void> {
+  async removeDeleteToken(id: string, token: string, options: IRefileManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/refile/${id}/tokens/${token}/delete`)

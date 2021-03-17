@@ -1,11 +1,11 @@
-export type ProgressiveHashFactory<T> = () => ProgressiveHash<T>
+export type IProgressiveHashFactory<T> = () => IProgressiveHash<T>
 
-export interface ProgressiveHash<T> {
+export interface IProgressiveHash<T> {
   update(buffer: Uint8Array): void
   digest(): Promise<T>
 }
 
-export async function* splitHash<T>(stream: ReadableStream, blockSize: number, createHash: ProgressiveHashFactory<T>): AsyncIterable<T> {
+export async function* splitHash<T>(stream: ReadableStream, blockSize: number, createHash: IProgressiveHashFactory<T>): AsyncIterable<T> {
   let hash = createHash()
   let accu = 0
   for await (const chunk of getIterator(stream)) {
