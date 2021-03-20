@@ -5,6 +5,8 @@ import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
 import { getFile } from '@utils/get-file'
 
+export { HTTPClientError } from '@blackglory/http-status'
+
 interface IFileInfo {
   hash: string
   location: string | null
