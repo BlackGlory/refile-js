@@ -10,7 +10,7 @@ beforeEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('RefileClient', () => {
-  it('uplodatFile(file: Blob | string): Promise<void>', async () => {
+  test('uplodatFile(file: Blob | string): Promise<void>', async () => {
     const client = createClient()
 
     const result = client.uploadFile(path.join(__dirname, './fixtures/file.txt'))
@@ -20,7 +20,7 @@ describe('RefileClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('getFileInfo(hash: string): Promise<RefileClientRequestOptions>', async () => {
+  test('getFileInfo(hash: string): Promise<RefileClientRequestOptions>', async () => {
     const client = createClient()
     const hash = 'hash'
 
@@ -35,7 +35,7 @@ describe('RefileClient', () => {
     })
   })
 
-  it('setReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
+  test('setReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
@@ -48,7 +48,7 @@ describe('RefileClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('removeReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
+  test('removeReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
@@ -61,7 +61,7 @@ describe('RefileClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('removeReferencesByItem(namespace: string, id: string): Promise<void>', async () => {
+  test('removeReferencesByItem(namespace: string, id: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
@@ -73,7 +73,7 @@ describe('RefileClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('getAllNamespaces(): Promise<string[]>', async () => {
+  test('getAllNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
     const result = client.getAllNamespaces()
@@ -83,7 +83,7 @@ describe('RefileClient', () => {
     expect(proResult).toEqual(['namespace'])
   })
 
-  it('getAllItemIds(namespace: string): Promise<string[]>', async () => {
+  test('getAllItemIds(namespace: string): Promise<string[]>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
@@ -94,7 +94,7 @@ describe('RefileClient', () => {
     expect(proResult).toEqual(['id'])
   })
 
-  it('getFileHashesByItem(namespace: string, id: string): Promise<string[]>', async () => {
+  test('getFileHashesByItem(namespace: string, id: string): Promise<string[]>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
@@ -106,7 +106,7 @@ describe('RefileClient', () => {
     expect(proResult).toEqual(['hash'])
   })
 
-  it('getItemIdsByFile(fileHash: string, namespace: string): Promise<string[]>', async () => {
+  test('getItemIdsByFile(fileHash: string, namespace: string): Promise<string[]>', async () => {
     const client = createClient()
     const fileHash = 'hash'
     const namespace = 'namespace'
