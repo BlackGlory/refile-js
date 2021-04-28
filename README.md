@@ -58,43 +58,70 @@ RefileClient#getFileInfo(hash: string, options?: IRefileClientRequestOptions): P
 #### setReference
 
 ```ts
-RefileClient#setReference(namespace: string, itemId: string, fileHash: string, options?: IRefileClientRequestOptions): Promise<void>
+RefileClient#setReference(
+  namespace: string
+, id: string
+, fileHash: string
+, options?: IRefileClientRequestOptions
+): Promise<void>
 ```
 
 #### removeReference
 
 ```ts
-RefileClient#removeReference(namespace: string, itemId: string, fileHash: string, options?: IRefileClientRequestOptions): Promise<void>
+RefileClient#removeReference(
+  namespace: string
+, id: string
+, fileHash: string
+, options?: IRefileClientRequestOptions
+): Promise<void>
 ```
 
 #### removeReferencesByItem
 
 ```ts
-RefileClient#removeReferencesByItem(namespace: string, itemId: string, options?: IRefileClientRequestOptions): Promise<void>
+RefileClient#removeReferencesByItem(
+  namespace: string
+, id: string
+, options?: IRefileClientRequestOptions
+): Promise<void>
 ```
 
 #### getAllNamespaces
 
 ```ts
-RefileClient#getAllNamespaces(options?: IRefileClientRequestOptionsWithoutToken): Promise<string[]>
+RefileClient#getAllNamespaces(
+  options?: IRefileClientRequestOptionsWithoutToken
+): Promise<string[]>
 ```
 
 #### getAllItemIds
 
 ```ts
-RefileClient#getAllItemIds(namespace: string, options?: IRefileClientRequestOptions): Promise<string[]>
+RefileClient#getAllItemIds(
+  namespace: string
+, options?: IRefileClientRequestOptions
+): Promise<string[]>
 ```
 
 #### getFileHashesByItem
 
 ```ts
-RefileClient#getFileHashesByItem(namespace: string, itemId: string, options?: IRefileClientRequestOptions): Promise<string[]>
+RefileClient#getFileHashesByItem(
+  namespace: string
+, id: string
+, options?: IRefileClientRequestOptions
+): Promise<string[]>
 ```
 
 #### getItemIdsByFile
 
 ```ts
-RefileClient#getItemIdsByFile(fileHash: string, namespace: string, options?: IRefileClientRequestOptions): Promise<string[]>
+RefileClient#getItemIdsByFile(
+  fileHash: string
+, namespace: string
+, options?: IRefileClientRequestOptions
+): Promise<string[]>
 ```
 
 ### RefileManager
@@ -114,56 +141,77 @@ interface IRefileManagerRequestOptions {
 
 #### Blacklist
 
-##### getIds
+##### getNamespaces
 
 ```ts
-RefileManager#Blacklist.getIds(options?: IRefileManagerRequestOptions): Promise<string[]>
+RefileManager#Blacklist.getNamespaces(
+  options?: IRefileManagerRequestOptions
+): Promise<string[]>
 ```
 
 ##### add
 
 ```ts
-RefileManager#Blacklist.add(id: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Blacklist.add(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-RefileManager#Blacklist.remove(id: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Blacklist.remove(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 #### Whitelist
 
-##### getIds
+##### getNamespaces
 
 ```ts
-RefileManager#Whitelist.getIds(options?: IRefileManagerRequestOptions): Promise<string[]>
+RefileManager#Whitelist.getNamespaces(
+  options?: IRefileManagerRequestOptions
+): Promise<string[]>
 ```
 
 ##### add
 
 ```ts
-RefileManager#Whitelist.add(id: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Whitelist.add(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-RefileManager#Whitelist.remove(id: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Whitelist.remove(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 #### TokenPolicy
 
-##### getIds
+##### getNamespaces
 
 ```ts
-RefileManager#TokenPolicy.getIds(options?: IRefileManagerRequestOptions): Promise<string[]>
+RefileManager#TokenPolicy.getNamespaces(
+  options?: IRefileManagerRequestOptions
+): Promise<string[]>
 ```
 
 ##### get
 
 ```ts
-RefileManager#TokenPolicy.get(id: string, options?: IRefileManagerRequestOptions): Promise<{
+RefileManager#TokenPolicy.get(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<{
   writeTokenRequired: boolean | null
   readTokenRequired: boolean | null
   deleteTokenRequired: boolean | null
@@ -173,52 +221,76 @@ RefileManager#TokenPolicy.get(id: string, options?: IRefileManagerRequestOptions
 ##### setWriteTokenRequired
 
 ```ts
-RefileManager#TokenPolicy.setWriteTokenRequired(id: string, val: boolean, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#TokenPolicy.setWriteTokenRequired(
+  namespace: string
+, val: boolean
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeWriteTokenRequired
 
 ```ts
-RefileManager#TokenPolicy.removeWriteTokenRequired(id: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#TokenPolicy.removeWriteTokenRequired(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### setReadTokenRequired
 
 
 ```ts
-RefileManager#TokenPolicy.setReadTokenRequired(id: string, val: boolean, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#TokenPolicy.setReadTokenRequired(
+  namespace: string
+, val: boolean
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeReadTokenRequired
 
 ```ts
-RefileManager#TokenPolicy.removeReadTokenRequired(id: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#TokenPolicy.removeReadTokenRequired(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### setDeleteTokenRequired
 
 ```ts
-RefileManager#TokenPolicy.setDeleteTokenRequired(id: string, val: boolean, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#TokenPolicy.setDeleteTokenRequired(
+  namespace: string
+, val: boolean
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeDeleteTokenRequired
 
 ```ts
-RefileManager#TokenPolicy.removeDeleteTokenRequired(id: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#TokenPolicy.removeDeleteTokenRequired(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 #### Token
 
-##### getIds
+##### getNamespaces
 
 ```ts
-RefileManager#Token.getIds(options?: IRefileManagerRequestOptions): Promise<string[]>
+RefileManager#Token.getNamespaces(options?: IRefileManagerRequestOptions): Promise<string[]>
 ```
 
 ##### getTokens
 
 ```ts
-RefileManager#Token.getTokens(id: string, options?: IRefileManagerRequestOptions): Promise<Array<{
+RefileManager#Token.getTokens(
+  namespace: string
+, options?: IRefileManagerRequestOptions
+): Promise<Array<{
   token: string
   write: boolean
   read: boolean
@@ -229,35 +301,59 @@ RefileManager#Token.getTokens(id: string, options?: IRefileManagerRequestOptions
 ##### addWriteToken
 
 ```ts
-RefileManager#Token.addWriteToken(id: string, token: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Token.addWriteToken(
+  namespace: string
+, token: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeWriteToken
 
 ```ts
-RefileManager#Token.removeWriteToken(id: string, token: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Token.removeWriteToken(
+  namespace: string
+, token: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### addReadToken
 
 ```ts
-RefileManager#Token.addReadToken(id: string, token: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Token.addReadToken(
+  namespace: string
+, token: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeReadToken
 
 ```ts
-RefileManager#Token.removeReadToken(id: string, token: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Token.removeReadToken(
+  namespace: string
+, token: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### addDeleteToken
 
 ```ts
-RefileManager#Token.addDeleteToken(id: string, token: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Token.addDeleteToken(
+  namespace: string
+, token: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeDeleteToken
 
 ```ts
-RefileManager#Token.removeDeleteToken(id: string, token: string, options?: IRefileManagerRequestOptions): Promise<void>
+RefileManager#Token.removeDeleteToken(
+  namespace: string
+, token: string
+, options?: IRefileManagerRequestOptions
+): Promise<void>
 ```

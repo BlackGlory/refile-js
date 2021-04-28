@@ -35,38 +35,38 @@ describe('RefileClient', () => {
     })
   })
 
-  it('setReference(namespace: string, itemId: string, fileHash: string): Promise<void>', async () => {
+  it('setReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
-    const itemId = 'id'
+    const id = 'id'
     const fileHash = 'hash'
 
-    const result = client.setReference(namespace, itemId, fileHash)
+    const result = client.setReference(namespace, id, fileHash)
     const proResult = await result
 
     expect(result).toBePromise()
     expect(proResult).toBeUndefined()
   })
 
-  it('removeReference(namespace: string, itemId: string, fileHash: string): Promise<void>', async () => {
+  it('removeReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
-    const itemId = 'id'
+    const id = 'id'
     const fileHash = 'hash'
 
-    const result = client.removeReference(namespace, itemId, fileHash)
+    const result = client.removeReference(namespace, id, fileHash)
     const proResult = await result
 
     expect(result).toBePromise()
     expect(proResult).toBeUndefined()
   })
 
-  it('removeReferencesByItem(namespace: string, itemId: string): Promise<void>', async () => {
+  it('removeReferencesByItem(namespace: string, id: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
-    const itemId = 'id'
+    const id = 'id'
 
-    const result = client.removeReferencesByItem(namespace, itemId)
+    const result = client.removeReferencesByItem(namespace, id)
     const proResult = await result
 
     expect(result).toBePromise()
@@ -94,12 +94,12 @@ describe('RefileClient', () => {
     expect(proResult).toEqual(['id'])
   })
 
-  it('getFileHashesByItem(namespace: string, itemId: string): Promise<string[]>', async () => {
+  it('getFileHashesByItem(namespace: string, id: string): Promise<string[]>', async () => {
     const client = createClient()
     const namespace = 'namespace'
-    const itemId = 'id'
+    const id = 'id'
 
-    const result = client.getFileHashesByItem(namespace, itemId)
+    const result = client.getFileHashesByItem(namespace, id)
     const proResult = await result
 
     expect(result).toBePromise()

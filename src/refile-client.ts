@@ -33,7 +33,10 @@ export interface IRefileClientRequestOptionsWithoutToken {
 export class RefileClient {
   constructor(private options: IRefileClientOptions) {}
 
-  async uploadFile(file: Blob | string, options: IRefileClientRequestOptionsWithoutToken = {}): Promise<void> {
+  async uploadFile(
+    file: Blob | string
+  , options: IRefileClientRequestOptionsWithoutToken = {}
+  ): Promise<void> {
     const { hash, hashList } = await getHashInfo(file)
 
     const req = put(
@@ -48,7 +51,10 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
-  async getFileInfo(hash: string, options: IRefileClientRequestOptions = {}): Promise<IFileInfo> {
+  async getFileInfo(
+    hash: string
+  , options: IRefileClientRequestOptions = {}
+  ): Promise<IFileInfo> {
     const req = get(
       url(this.options.server)
     , pathname(`/refile/files/${hash}`)
@@ -63,14 +69,14 @@ export class RefileClient {
 
   async setReference(
     namespace: string
-  , itemId: string
+  , id: string
   , fileHash: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
     const req = put(
       url(this.options.server)
-    , pathname(`/refile/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
+    , pathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , keepalive(options.keepalive ?? this.options.keepalive)
@@ -81,14 +87,14 @@ export class RefileClient {
 
   async removeReference(
     namespace: string
-  , itemId: string
+  , id: string
   , fileHash: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
     const req = del(
       url(this.options.server)
-    , pathname(`/refile/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
+    , pathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , keepalive(options.keepalive ?? this.options.keepalive)
@@ -99,13 +105,13 @@ export class RefileClient {
 
   async removeReferencesByItem(
     namespace: string
-  , itemId: string
+  , id: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
     const req = del(
       url(this.options.server)
-    , pathname(`/refile/namespaces/${namespace}/items/${itemId}`)
+    , pathname(`/refile/namespaces/${namespace}/items/${id}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , keepalive(options.keepalive ?? this.options.keepalive)
@@ -147,13 +153,13 @@ export class RefileClient {
 
   async getFileHashesByItem(
     namespace: string
-  , itemId: string
+  , id: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
     const token = options.token ?? this.options.token
     const req = get(
       url(this.options.server)
-    , pathname(`/refile/namespaces/${namespace}/items/${itemId}/files`)
+    , pathname(`/refile/namespaces/${namespace}/items/${id}/files`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , keepalive(options.keepalive ?? this.options.keepalive)

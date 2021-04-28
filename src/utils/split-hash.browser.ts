@@ -5,7 +5,11 @@ export interface IProgressiveHash<T> {
   digest(): Promise<T>
 }
 
-export async function* splitHash<T>(stream: ReadableStream, blockSize: number, createHash: IProgressiveHashFactory<T>): AsyncIterable<T> {
+export async function* splitHash<T>(
+  stream: ReadableStream
+, blockSize: number
+, createHash: IProgressiveHashFactory<T>
+): AsyncIterable<T> {
   let hash = createHash()
   let accu = 0
   for await (const chunk of getIterator(stream)) {
@@ -26,7 +30,8 @@ export async function* splitHash<T>(stream: ReadableStream, blockSize: number, c
           accu = 0
           offset += slice.length
         } else {
-          // if the length does not match, the remaining data is not long enough, update the remaining data and exit the loop.
+          // if the length does not match,
+          // the remaining data is not long enough, update the remaining data and exit the loop.
           hash.update(slice)
           accu += slice.length
           break
