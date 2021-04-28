@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/BlackGlory/refile-js/compare/v0.3.4...v0.4.0) (2021-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename
+
+* rename ([74bd795](https://github.com/BlackGlory/refile-js/commit/74bd79525783b1c9a909b9893913bf86c83acd31))
+
 ### [0.3.4](https://github.com/BlackGlory/refile-js/compare/v0.3.3...v0.3.4) (2021-03-20)
 
 
