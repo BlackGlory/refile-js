@@ -124,6 +124,12 @@ RefileClient#getItemIdsByFile(
 ): Promise<string[]>
 ```
 
+#### collectGarbage
+
+```ts
+RefileClient#collectGarbage(options?: IRefileClientRequestOptionsWithoutToken): Promise<void>
+```
+
 ### RefileManager
 
 ```ts

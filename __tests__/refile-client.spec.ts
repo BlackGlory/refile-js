@@ -117,6 +117,16 @@ describe('RefileClient', () => {
     expect(result).toBePromise()
     expect(proResult).toEqual(['id'])
   })
+
+  test('collectGarbage(): Promise<void>', async () => {
+    const client = createClient()
+
+    const result = client.collectGarbage()
+    const proResult = await result
+
+    expect(result).toBePromise()
+    expect(proResult).toBeUndefined()
+  })
 })
 
 function createClient() {

@@ -78,4 +78,10 @@ export const server = setupServer(
     , ctx.json(['id'])
     )
   })
+
+, rest.post('/refile/gc', (req, res, ctx) => {
+    return res(
+      ctx.status(204)
+    )
+  })
 )

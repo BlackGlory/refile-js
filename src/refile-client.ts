@@ -1,5 +1,5 @@
 import { fetch } from 'extra-fetch'
-import { put, get, del } from 'extra-request'
+import { post, put, get, del } from 'extra-request'
 import { url, pathname, searchParams, signal, formDataField, keepalive } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
@@ -187,5 +187,16 @@ export class RefileClient {
     return await fetch(req)
       .then(ok)
       .then(toJSON) as string[]
+  }
+
+  async collectGarbage(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<void> {
+    const req = post(
+      url(this.options.server)
+    , pathname('/refile/gc')
+    , options.signal && signal(options.signal)
+    , keepalive(options.keepalive ?? this.options.keepalive)
+    )
+
+    await fetch(req).then(ok)
   }
 }
