@@ -6,6 +6,8 @@ import { TokenClient } from './token-client'
 export interface IRefileManagerOptions {
   server: string
   adminPassword: string
+  keepalive?: boolean
+  timeout?: number
 }
 
 export class RefileManager {

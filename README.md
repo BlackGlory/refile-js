@@ -23,6 +23,7 @@ new RefileClient({
   server: string
 , token?: string
 , keepalive?: boolean
+, timeout?: number
 })
 ```
 
@@ -31,11 +32,13 @@ interface IRefileClientRequestOptions {
   signal?: AbortSignal
   token?: string
   keepalive?: boolean
+  timeout?: number | false
 }
 
 interface IRefileClientRequestOptionsWithoutToken {
   signal?: AbortSignal
   keepalive?: boolean
+  timeout?: number | false
 }
 ```
 
@@ -136,12 +139,16 @@ RefileClient#collectGarbage(options?: IRefileClientRequestOptionsWithoutToken): 
 new RefileManager({
   server: string
 , adminPassword: string
+, keepalive?: boolean
+, timeout?: number
 })
 ```
 
 ```ts
 interface IRefileManagerRequestOptions {
   signal?: AbortSignal
+  keepalive?: boolean
+  timeout?: number | false
 }
 ```
 

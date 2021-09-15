@@ -1,9 +1,12 @@
 import { fetch } from 'extra-fetch'
-import { post, put, get, del } from 'extra-request'
-import { url, pathname, searchParams, signal, formDataField, keepalive } from 'extra-request/lib/es2018/transformers'
+import { post, put, get, del, IHTTPOptionsTransformer } from 'extra-request'
+import { url, pathname, searchParams, signal, formDataField, keepalive }
+  from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
 import { getFile } from '@utils/get-file'
+import { raceAbortSignals, timeoutSignal } from 'extra-promise'
+import { Falsy } from 'justypes'
 
 export { HTTPClientError } from '@blackglory/http-status'
 
@@ -17,21 +20,43 @@ export interface IRefileClientOptions {
   server: string
   token?: string
   keepalive?: boolean
+  timeout?: number
 }
 
 export interface IRefileClientRequestOptions {
   signal?: AbortSignal
   token?: string
   keepalive?: boolean
+  timeout?: number | false
 }
 
 export interface IRefileClientRequestOptionsWithoutToken {
   signal?: AbortSignal
   keepalive?: boolean
+  timeout?: number | false
 }
 
 export class RefileClient {
   constructor(private options: IRefileClientOptions) {}
+
+  private getCommonTransformers(
+    options: IRefileClientRequestOptions
+  ): Array<IHTTPOptionsTransformer | Falsy> {
+    const token = options.token ?? this.options.token
+
+    return [
+      url(this.options.server)
+    , token && searchParams({ token })
+    , signal(raceAbortSignals([
+        options.signal
+      , options.timeout !== false && (
+          (options.timeout && timeoutSignal(options.timeout)) ??
+          (this.options.timeout && timeoutSignal(this.options.timeout))
+        )
+      ]))
+    , keepalive(options.keepalive ?? this.options.keepalive)
+    ]
+  }
 
   async uploadFile(
     file: Blob | string
@@ -40,12 +65,10 @@ export class RefileClient {
     const { hash, hashList } = await getHashInfo(file)
 
     const req = put(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/files/${hash}`)
     , formDataField('hash', hashList)
     , formDataField('file', getFile(file))
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -56,10 +79,8 @@ export class RefileClient {
   , options: IRefileClientRequestOptions = {}
   ): Promise<IFileInfo> {
     const req = get(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/files/${hash}`)
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -73,13 +94,9 @@ export class RefileClient {
   , fileHash: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
-    const token = options.token ?? this.options.token
     const req = put(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
-    , token && searchParams({ token })
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -91,13 +108,9 @@ export class RefileClient {
   , fileHash: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
-    const token = options.token ?? this.options.token
     const req = del(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
-    , token && searchParams({ token })
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -108,13 +121,9 @@ export class RefileClient {
   , id: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
-    const token = options.token ?? this.options.token
     const req = del(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/namespaces/${namespace}/items/${id}`)
-    , token && searchParams({ token })
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -122,10 +131,8 @@ export class RefileClient {
 
   async getAllNamespaces(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
     const req = get(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname('/refile/namespaces')
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -137,13 +144,9 @@ export class RefileClient {
     namespace: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
-    const token = options.token ?? this.options.token
     const req = get(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/namespaces/${namespace}/items`)
-    , token && searchParams({ token })
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -156,13 +159,9 @@ export class RefileClient {
   , id: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
-    const token = options.token ?? this.options.token
     const req = get(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/namespaces/${namespace}/items/${id}/files`)
-    , token && searchParams({ token })
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -175,13 +174,9 @@ export class RefileClient {
   , namespace: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
-    const token = options.token ?? this.options.token
     const req = get(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname(`/refile/files/${fileHash}/namespaces/${namespace}/items`)
-    , token && searchParams({ token })
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req)
@@ -191,10 +186,8 @@ export class RefileClient {
 
   async collectGarbage(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<void> {
     const req = post(
-      url(this.options.server)
+      ...this.getCommonTransformers(options)
     , pathname('/refile/gc')
-    , options.signal && signal(options.signal)
-    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)

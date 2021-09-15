@@ -78,6 +78,7 @@
     "@blackglory/types": "^0.5.0",
     "domexception": "^2.0.1",
     "extra-fetch": "^1.7.2",
+    "extra-promise": "^0.18.4",
     "extra-request": "^3.0.0",
     "extra-response": "^0.3.6",
     "fetch-blob": "2.1.1",
