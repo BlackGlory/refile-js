@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.6](https://github.com/BlackGlory/refile-js/compare/v0.4.5...v0.4.6) (2021-09-15)
+
+
+### Bug Fixes
+
+* build ([65890f1](https://github.com/BlackGlory/refile-js/commit/65890f18aa69867f97a34064c0f40fac0c57aa89))
+
 ### [0.4.5](https://github.com/BlackGlory/refile-js/compare/v0.4.4...v0.4.5) (2021-09-15)
 
 
