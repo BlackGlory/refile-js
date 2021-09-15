@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.5](https://github.com/BlackGlory/refile-js/compare/v0.4.4...v0.4.5) (2021-09-15)
+
+
+### Features
+
+* add keepalive, timeout ([8c4fa13](https://github.com/BlackGlory/refile-js/commit/8c4fa13248894a609be7dff5170d6e96a1c88f0b))
+
 ### [0.4.4](https://github.com/BlackGlory/refile-js/compare/v0.4.3...v0.4.4) (2021-07-26)
 
 
