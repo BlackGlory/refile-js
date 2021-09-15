@@ -1,4 +1,4 @@
-import { IHashInfo } from '@src/types'
+import { IHashInfo } from '@src/utils'
 import { toArrayAsync, map, toArray } from 'iterable-operator'
 import { isString } from '@blackglory/types'
 import { HASH_BLOCK_SIZE } from './constants'
