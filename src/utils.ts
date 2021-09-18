@@ -1,5 +1,5 @@
 import { IHTTPOptionsTransformer } from 'extra-request'
-import { url, signal, keepalive, bearerAuth } from 'extra-request/transformers'
+import { url, signal, keepalive, bearerAuth } from 'extra-request/transformers/index'
 import { timeoutSignal, raceAbortSignals } from 'extra-promise'
 import type { IRefileManagerOptions } from './refile-manager'
 

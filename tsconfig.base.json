@@ -12,7 +12,6 @@
       "@src/*": ["src/*"]
     , "@utils/*": ["src/utils/*"]
     , "@test/*": ["__tests__/*"]
-    , "extra-request/transformers": ["node_modules/extra-request/lib/es2018/transformers/index"]
     , "extra-request/transformers/*": ["node_modules/extra-request/lib/es2018/transformers/*"]
     }
   , "plugins" : [

@@ -1,6 +1,6 @@
 import { fetch } from 'extra-fetch'
 import { get, put, del } from 'extra-request'
-import { pathname, json } from 'extra-request/transformers'
+import { pathname, json } from 'extra-request/transformers/index'
 import { ok, toJSON } from 'extra-response'
 import { IRefileManagerRequestOptions, RefileManagerBase } from './utils'
 
