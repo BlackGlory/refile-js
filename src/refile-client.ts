@@ -58,6 +58,9 @@ export class RefileClient {
     ]
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async uploadFile(
     file: Blob | string
   , options: IRefileClientRequestOptionsWithoutToken = {}
@@ -74,6 +77,9 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async getFileInfo(
     hash: string
   , options: IRefileClientRequestOptions = {}
@@ -88,6 +94,9 @@ export class RefileClient {
       .then(toJSON) as IFileInfo
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async setReference(
     namespace: string
   , id: string
@@ -102,6 +111,9 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async removeReference(
     namespace: string
   , id: string
@@ -116,6 +128,9 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async removeReferencesByItem(
     namespace: string
   , id: string
@@ -129,6 +144,9 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async getAllNamespaces(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
@@ -140,6 +158,9 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async getAllItemIds(
     namespace: string
   , options: IRefileClientRequestOptions = {}
@@ -154,6 +175,9 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async getFileHashesByItem(
     namespace: string
   , id: string
@@ -169,6 +193,9 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async getItemIdsByFile(
     fileHash: string
   , namespace: string
@@ -184,6 +211,9 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
+  /**
+   * @throws {AbortError}
+   */
   async collectGarbage(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<void> {
     const req = post(
       ...this.getCommonTransformers(options)
