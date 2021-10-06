@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.11](https://github.com/BlackGlory/refile-js/compare/v0.4.10...v0.4.11) (2021-10-06)
+
+
+### Features
+
+* export AbortError ([9010c19](https://github.com/BlackGlory/refile-js/commit/9010c19ad56853d48105aa8129ddeb0ccc8c2a21))
+
 ### [0.4.10](https://github.com/BlackGlory/refile-js/compare/v0.4.9...v0.4.10) (2021-09-18)
 
 
