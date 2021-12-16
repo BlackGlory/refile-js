@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/BlackGlory/refile-js/compare/v0.4.12...v0.5.0) (2021-12-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* - The minimum version is Node.js v16
+
+* upgrade dependencies ([ab19bac](https://github.com/BlackGlory/refile-js/commit/ab19bace1eb7b837c3bf1db7b7e769d8212683e7))
+
 ### [0.4.12](https://github.com/BlackGlory/refile-js/compare/v0.4.11...v0.4.12) (2021-10-14)
 
 ### [0.4.11](https://github.com/BlackGlory/refile-js/compare/v0.4.10...v0.4.11) (2021-10-06)
