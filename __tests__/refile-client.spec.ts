@@ -3,7 +3,6 @@ import { RefileClient } from '@src/refile-client'
 import { TOKEN } from '@test/utils'
 import * as path from 'path'
 import '@blackglory/jest-matchers'
-import 'jest-extended'
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 beforeEach(() => server.resetHandlers())
