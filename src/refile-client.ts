@@ -5,7 +5,7 @@ import { url, pathname, searchParams, signal, formDataField, keepalive }
 import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
 import { getFile } from '@utils/get-file'
-import { raceAbortSignals, timeoutSignal } from 'extra-promise'
+import { raceAbortSignals, timeoutSignal } from 'extra-abort'
 import { Falsy } from 'justypes'
 
 export { HTTPClientError } from '@blackglory/http-status'
