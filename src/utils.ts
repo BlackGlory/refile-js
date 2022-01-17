@@ -1,5 +1,5 @@
 import { IHTTPOptionsTransformer } from 'extra-request'
-import { url, signal, keepalive, bearerAuth } from 'extra-request/transformers/index.js'
+import { url, signal, keepalive, bearerAuth, header } from 'extra-request/transformers/index.js'
 import { timeoutSignal, raceAbortSignals } from 'extra-abort'
 import type { IRefileManagerOptions } from './refile-manager'
 
@@ -31,6 +31,7 @@ export class RefileManagerBase {
         )
       ]))
     , keepalive(options.keepalive ?? this.options.keepalive)
+    , header('Accept-Version', '0.5.3')
     ]
   }
 }
