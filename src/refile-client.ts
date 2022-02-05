@@ -1,6 +1,6 @@
 import { fetch } from 'extra-fetch'
 import { post, put, get, del, IHTTPOptionsTransformer } from 'extra-request'
-import { url, pathname, searchParams, signal, formDataField, keepalive }
+import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth }
   from 'extra-request/transformers/index.js'
 import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
@@ -19,6 +19,10 @@ interface IFileInfo {
 export interface IRefileClientOptions {
   server: string
   token?: string
+  basicAuth?: {
+    username: string
+    password: string
+  }
   keepalive?: boolean
   timeout?: number
 }
@@ -43,9 +47,11 @@ export class RefileClient {
     options: IRefileClientRequestOptions
   ): Array<IHTTPOptionsTransformer | Falsy> {
     const token = options.token ?? this.options.token
+    const auth = this.options.basicAuth
 
     return [
       url(this.options.server)
+    , auth && basicAuth(auth.username, auth.password)
     , token && searchParams({ token })
     , signal(raceAbortSignals([
         options.signal

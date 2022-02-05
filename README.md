@@ -22,6 +22,10 @@ getFileHash(file: Blob | string): Promise<string>
 new RefileClient({
   server: string
 , token?: string
+, basicAuth?: {
+    username: string
+  , password: string
+  }
 , keepalive?: boolean
 , timeout?: number
 })
