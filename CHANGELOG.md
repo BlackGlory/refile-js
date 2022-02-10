@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/BlackGlory/refile-js/compare/v0.6.1...v0.7.0) (2022-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires Refile 0.5.4
+
+### Features
+
+* add Accept-Version to RefileClient ([3d2db34](https://github.com/BlackGlory/refile-js/commit/3d2db34ef5f31e7a70d8d83a43406ea3b9a49b3a))
+* add RefileClient.removeReferencesByNamespace ([71bad02](https://github.com/BlackGlory/refile-js/commit/71bad02e21851ff0337b641895f0ef1b02bc61d6))
+
 ### [0.6.1](https://github.com/BlackGlory/refile-js/compare/v0.6.0...v0.6.1) (2022-02-05)
 
 
