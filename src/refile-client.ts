@@ -1,12 +1,13 @@
 import { fetch } from 'extra-fetch'
 import { post, put, get, del, IHTTPOptionsTransformer } from 'extra-request'
-import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth }
+import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth, header }
   from 'extra-request/transformers/index.js'
 import { ok, toJSON } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
 import { getFile } from '@utils/get-file'
 import { raceAbortSignals, timeoutSignal } from 'extra-abort'
 import { Falsy } from 'justypes'
+import { expectedVersion } from '@src/utils'
 
 export { HTTPClientError } from '@blackglory/http-status'
 
@@ -61,6 +62,7 @@ export class RefileClient {
         )
       ]))
     , keepalive(options.keepalive ?? this.options.keepalive)
+    , header('Accept-Version', expectedVersion)
     ]
   }
 

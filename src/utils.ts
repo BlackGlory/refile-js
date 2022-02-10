@@ -14,6 +14,8 @@ export interface IHashInfo {
   hashList: string[]
 }
 
+export const expectedVersion = '0.5.3'
+
 export class RefileManagerBase {
   constructor(private options: IRefileManagerOptions) {}
 
@@ -31,7 +33,7 @@ export class RefileManagerBase {
         )
       ]))
     , keepalive(options.keepalive ?? this.options.keepalive)
-    , header('Accept-Version', '0.5.3')
+    , header('Accept-Version', expectedVersion)
     ]
   }
 }
