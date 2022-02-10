@@ -1,7 +1,5 @@
 # refile-js
-
 ## Install
-
 ```sh
 npm install --save @blackglory/refile-js
 # or
@@ -9,15 +7,12 @@ yarn add @blackglory/refile-js
 ```
 
 ## API
-
 ### getFileHash
-
 ```ts
 getFileHash(file: Blob | string): Promise<string>
 ```
 
 ### RefileClient
-
 ```ts
 new RefileClient({
   server: string
@@ -47,13 +42,11 @@ interface IRefileClientRequestOptionsWithoutToken {
 ```
 
 #### uploadFile
-
 ```ts
 RefileClient#uploadFile(file: Blob | string, options?: IRefileClientRequestOptionsWithoutToken): Promise<void>
 ```
 
 #### getFileInfo
-
 ```ts
 RefileClient#getFileInfo(hash: string, options?: IRefileClientRequestOptions): Promise<{
   hash: string
@@ -63,7 +56,6 @@ RefileClient#getFileInfo(hash: string, options?: IRefileClientRequestOptions): P
 ```
 
 #### setReference
-
 ```ts
 RefileClient#setReference(
   namespace: string
@@ -74,7 +66,6 @@ RefileClient#setReference(
 ```
 
 #### removeReference
-
 ```ts
 RefileClient#removeReference(
   namespace: string
@@ -85,7 +76,6 @@ RefileClient#removeReference(
 ```
 
 #### removeReferencesByItem
-
 ```ts
 RefileClient#removeReferencesByItem(
   namespace: string
@@ -94,8 +84,15 @@ RefileClient#removeReferencesByItem(
 ): Promise<void>
 ```
 
-#### getAllNamespaces
+#### removeReferencesByNamespace
+```ts
+RefileClient#removeReferencesByNamespace(
+  namespace: string
+, options?: IRefileClientRequestOptions
+): Promise<void>
+```
 
+#### getAllNamespaces
 ```ts
 RefileClient#getAllNamespaces(
   options?: IRefileClientRequestOptionsWithoutToken
@@ -103,7 +100,6 @@ RefileClient#getAllNamespaces(
 ```
 
 #### getAllItemIds
-
 ```ts
 RefileClient#getAllItemIds(
   namespace: string
@@ -112,7 +108,6 @@ RefileClient#getAllItemIds(
 ```
 
 #### getFileHashesByItem
-
 ```ts
 RefileClient#getFileHashesByItem(
   namespace: string
@@ -122,7 +117,6 @@ RefileClient#getFileHashesByItem(
 ```
 
 #### getItemIdsByFile
-
 ```ts
 RefileClient#getItemIdsByFile(
   fileHash: string
@@ -132,13 +126,11 @@ RefileClient#getItemIdsByFile(
 ```
 
 #### collectGarbage
-
 ```ts
 RefileClient#collectGarbage(options?: IRefileClientRequestOptionsWithoutToken): Promise<void>
 ```
 
 ### RefileManager
-
 ```ts
 new RefileManager({
   server: string
@@ -157,9 +149,7 @@ interface IRefileManagerRequestOptions {
 ```
 
 #### Blacklist
-
 ##### getNamespaces
-
 ```ts
 RefileManager#Blacklist.getNamespaces(
   options?: IRefileManagerRequestOptions
@@ -167,7 +157,6 @@ RefileManager#Blacklist.getNamespaces(
 ```
 
 ##### add
-
 ```ts
 RefileManager#Blacklist.add(
   namespace: string
@@ -176,7 +165,6 @@ RefileManager#Blacklist.add(
 ```
 
 ##### remove
-
 ```ts
 RefileManager#Blacklist.remove(
   namespace: string
@@ -185,9 +173,7 @@ RefileManager#Blacklist.remove(
 ```
 
 #### Whitelist
-
 ##### getNamespaces
-
 ```ts
 RefileManager#Whitelist.getNamespaces(
   options?: IRefileManagerRequestOptions
@@ -195,7 +181,6 @@ RefileManager#Whitelist.getNamespaces(
 ```
 
 ##### add
-
 ```ts
 RefileManager#Whitelist.add(
   namespace: string
@@ -204,7 +189,6 @@ RefileManager#Whitelist.add(
 ```
 
 ##### remove
-
 ```ts
 RefileManager#Whitelist.remove(
   namespace: string
@@ -213,9 +197,7 @@ RefileManager#Whitelist.remove(
 ```
 
 #### TokenPolicy
-
 ##### getNamespaces
-
 ```ts
 RefileManager#TokenPolicy.getNamespaces(
   options?: IRefileManagerRequestOptions
@@ -223,7 +205,6 @@ RefileManager#TokenPolicy.getNamespaces(
 ```
 
 ##### get
-
 ```ts
 RefileManager#TokenPolicy.get(
   namespace: string
@@ -236,7 +217,6 @@ RefileManager#TokenPolicy.get(
 ```
 
 ##### setWriteTokenRequired
-
 ```ts
 RefileManager#TokenPolicy.setWriteTokenRequired(
   namespace: string
@@ -246,7 +226,6 @@ RefileManager#TokenPolicy.setWriteTokenRequired(
 ```
 
 ##### removeWriteTokenRequired
-
 ```ts
 RefileManager#TokenPolicy.removeWriteTokenRequired(
   namespace: string
@@ -255,8 +234,6 @@ RefileManager#TokenPolicy.removeWriteTokenRequired(
 ```
 
 ##### setReadTokenRequired
-
-
 ```ts
 RefileManager#TokenPolicy.setReadTokenRequired(
   namespace: string
@@ -266,7 +243,6 @@ RefileManager#TokenPolicy.setReadTokenRequired(
 ```
 
 ##### removeReadTokenRequired
-
 ```ts
 RefileManager#TokenPolicy.removeReadTokenRequired(
   namespace: string
@@ -275,7 +251,6 @@ RefileManager#TokenPolicy.removeReadTokenRequired(
 ```
 
 ##### setDeleteTokenRequired
-
 ```ts
 RefileManager#TokenPolicy.setDeleteTokenRequired(
   namespace: string
@@ -285,7 +260,6 @@ RefileManager#TokenPolicy.setDeleteTokenRequired(
 ```
 
 ##### removeDeleteTokenRequired
-
 ```ts
 RefileManager#TokenPolicy.removeDeleteTokenRequired(
   namespace: string
@@ -294,15 +268,12 @@ RefileManager#TokenPolicy.removeDeleteTokenRequired(
 ```
 
 #### Token
-
 ##### getNamespaces
-
 ```ts
 RefileManager#Token.getNamespaces(options?: IRefileManagerRequestOptions): Promise<string[]>
 ```
 
 ##### getTokens
-
 ```ts
 RefileManager#Token.getTokens(
   namespace: string
@@ -316,7 +287,6 @@ RefileManager#Token.getTokens(
 ```
 
 ##### addWriteToken
-
 ```ts
 RefileManager#Token.addWriteToken(
   namespace: string
@@ -326,7 +296,6 @@ RefileManager#Token.addWriteToken(
 ```
 
 ##### removeWriteToken
-
 ```ts
 RefileManager#Token.removeWriteToken(
   namespace: string
@@ -336,7 +305,6 @@ RefileManager#Token.removeWriteToken(
 ```
 
 ##### addReadToken
-
 ```ts
 RefileManager#Token.addReadToken(
   namespace: string
@@ -346,7 +314,6 @@ RefileManager#Token.addReadToken(
 ```
 
 ##### removeReadToken
-
 ```ts
 RefileManager#Token.removeReadToken(
   namespace: string
@@ -356,7 +323,6 @@ RefileManager#Token.removeReadToken(
 ```
 
 ##### addDeleteToken
-
 ```ts
 RefileManager#Token.addDeleteToken(
   namespace: string
@@ -366,7 +332,6 @@ RefileManager#Token.addDeleteToken(
 ```
 
 ##### removeDeleteToken
-
 ```ts
 RefileManager#Token.removeDeleteToken(
   namespace: string

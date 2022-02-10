@@ -155,6 +155,21 @@ export class RefileClient {
   /**
    * @throws {AbortError}
    */
+  async removeReferencesByNamespace(
+    namespace: string
+  , options: IRefileClientRequestOptions = {}
+  ): Promise<void> {
+    const req = del(
+      ...this.getCommonTransformers(options)
+    , pathname(`/refile/namespaces/${namespace}`)
+    )
+
+    await fetch(req).then(ok)
+  }
+
+  /**
+   * @throws {AbortError}
+   */
   async getAllNamespaces(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)

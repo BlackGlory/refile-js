@@ -14,7 +14,7 @@ export interface IHashInfo {
   hashList: string[]
 }
 
-export const expectedVersion = '0.5.3'
+export const expectedVersion = '0.5.4'
 
 export class RefileManagerBase {
   constructor(private options: IRefileManagerOptions) {}

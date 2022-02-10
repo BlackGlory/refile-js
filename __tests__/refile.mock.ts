@@ -45,6 +45,14 @@ export const server = setupServer(
     )
   })
 
+, rest.delete('/refile/namespaces/:namespace', (req, res, ctx) => {
+    if (badToken(req)) return res(ctx.status(401))
+
+    return res(
+      ctx.status(204)
+    )
+  })
+
 , rest.get('/refile/namespaces', (req, res, ctx) => {
     return res(
       ctx.status(200)

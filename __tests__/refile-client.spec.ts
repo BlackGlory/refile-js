@@ -72,6 +72,17 @@ describe('RefileClient', () => {
     expect(proResult).toBeUndefined()
   })
 
+  test('removeReferencesByNamespace(namespace: string): Promise<void>', async () => {
+    const client = createClient()
+    const namespace = 'namespace'
+
+    const result = client.removeReferencesByNamespace(namespace)
+    const proResult = await result
+
+    expect(result).toBePromise()
+    expect(proResult).toBeUndefined()
+  })
+
   test('getAllNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
