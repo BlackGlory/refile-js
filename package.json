@@ -76,6 +76,7 @@
     "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
+    "@blackglory/errors": "^2.2.0",
     "@blackglory/http-status": "^1.0.1",
     "@blackglory/types": "^0.6.5",
     "extra-abort": "^0.1.1",

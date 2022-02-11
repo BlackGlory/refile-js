@@ -5,11 +5,10 @@ import { toArrayAsync } from 'iterable-operator'
 import { IHashInfo } from '@src/utils'
 import { isString } from '@blackglory/types'
 import { HASH_BLOCK_SIZE } from './constants'
+import { assert } from '@blackglory/errors'
 
 export async function getHashInfo(filename: string | Blob): Promise<IHashInfo> {
-  if (!isString(filename)) {
-    throw new Error('This function only accepts string on Node.js side')
-  }
+  assert(isString(filename), 'The function only accepts string on Node.js side')
 
   const stream = fs.createReadStream(filename)
   const hashList = await getHashList(stream)

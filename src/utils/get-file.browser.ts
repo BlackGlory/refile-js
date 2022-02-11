@@ -1,9 +1,8 @@
-import { isString } from '@blackglory/types'
+import { isntString } from '@blackglory/types'
+import { assert } from '@blackglory/errors'
 
-export async function getFile(fileOrFilename: Blob | string): Promise<Blob> {
-  if (isString(fileOrFilename)) {
-    throw new Error('This function only accepts Blob on browser side')
-  }
+export async function getFile(blob: Blob | string): Promise<Blob> {
+  assert(isntString(blob), 'The function only accepts Blob on browser side')
 
-  return fileOrFilename
+  return blob
 }
