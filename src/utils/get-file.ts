@@ -1,12 +1,13 @@
 import { Blob } from 'extra-fetch'
-/* @ts-ignore */
-import blobFrom = require('fetch-blob/from')
 import { isString } from '@blackglory/types'
+import { readFile } from 'fs/promises'
 
-export function getFile(file: Blob | string): Blob {
-  if (isString(file)) {
-    return new Blob([blobFrom(file)])
+export async function getFile(fileOrFilename: Blob | string): Promise<Blob> {
+  if (isString(fileOrFilename)) {
+    const filename = fileOrFilename
+    const buffer = await readFile(filename)
+    return new Blob([buffer])
   } else {
-    return file
+    return fileOrFilename
   }
 }

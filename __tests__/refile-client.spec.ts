@@ -1,12 +1,11 @@
-import { server } from '@test/refile.mock'
+import { buildServer } from '@test/refile.mock'
 import { RefileClient } from '@src/refile-client'
-import { TOKEN } from '@test/utils'
+import { TOKEN, startService, stopService, getAddress } from '@test/utils'
 import * as path from 'path'
 import '@blackglory/jest-matchers'
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
-beforeEach(() => server.resetHandlers())
-afterAll(() => server.close())
+beforeAll(() => startService(buildServer))
+afterAll(stopService)
 
 describe('RefileClient', () => {
   test('uplodatFile(file: Blob | string): Promise<void>', async () => {
@@ -141,7 +140,7 @@ describe('RefileClient', () => {
 
 function createClient() {
   return new RefileClient({
-    server: 'http://localhost'
+    server: getAddress()
   , token: TOKEN
   })
 }

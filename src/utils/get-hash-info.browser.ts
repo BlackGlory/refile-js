@@ -5,7 +5,9 @@ import { HASH_BLOCK_SIZE } from './constants'
 import { splitHash, IProgressiveHash } from './split-hash.browser'
 
 export async function getHashInfo(blob: Blob | string): Promise<IHashInfo> {
-  if (isString(blob)) throw new Error('This function only accepts Blob on browser side')
+  if (isString(blob)) {
+    throw new Error('This function only accepts Blob on browser side')
+  }
 
   const stream = blob.stream()
   const hashList = await getHashList(stream)

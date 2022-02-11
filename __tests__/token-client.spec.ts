@@ -1,11 +1,10 @@
-import { server } from '@test/token.mock'
+import { buildServer } from '@test/token.mock'
 import { TokenClient } from '@src/token-client'
-import { ADMIN_PASSWORD } from '@test/utils'
+import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
 import '@blackglory/jest-matchers'
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
-beforeEach(() => server.resetHandlers())
-afterAll(() => server.close())
+beforeAll(() => startService(buildServer))
+afterAll(stopService)
 
 describe('TokenClient', () => {
   test('getNamespaces(): Promise<string[]>', async () => {
@@ -115,7 +114,7 @@ describe('TokenClient', () => {
 
 function createClient() {
   return new TokenClient({
-    server: 'http://localhost'
+    server: getAddress()
   , adminPassword: ADMIN_PASSWORD
   })
 }

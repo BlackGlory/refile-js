@@ -1,66 +1,63 @@
-import { setupServer } from 'msw/node'
-import { rest } from 'msw'
+import fastify from 'fastify'
 import { badAuth } from '@test/utils'
 
-export const server = setupServer(
-  rest.get('/admin/refile-with-tokens', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+export function buildServer() {
+  const server = fastify()
 
-    return res(
-      ctx.status(200)
-    , ctx.json(['namespace'])
-    )
+  server.get('/admin/refile-with-tokens', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
+
+    reply.status(200).send(['namespace'])
   })
 
-, rest.get('/admin/refile/:namespace/tokens', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.get('/admin/refile/:namespace/tokens', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(
-      ctx.status(200)
-    , ctx.json([
-        {
-          token: 'token'
-        , write: true
-        , read: false
-        , delete: false
-        }
-      ])
-    )
+    reply.status(200).send([
+      {
+        token: 'token'
+      , write: true
+      , read: false
+      , delete: false
+      }
+    ])
   })
 
-, rest.put('/admin/refile/:namespace/tokens/:token/write', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.put('/admin/refile/:namespace/tokens/:token/write', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.delete('/admin/refile/:namespace/tokens/:token/write', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.delete('/admin/refile/:namespace/tokens/:token/write', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.put('/admin/refile/:namespace/tokens/:token/read', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.put('/admin/refile/:namespace/tokens/:token/read', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.delete('/admin/refile/:namespace/tokens/:token/read', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.delete('/admin/refile/:namespace/tokens/:token/read', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.put('/admin/refile/:namespace/tokens/:token/delete', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.put('/admin/refile/:namespace/tokens/:token/delete', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.delete('/admin/refile/:namespace/tokens/:token/delete', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.delete('/admin/refile/:namespace/tokens/:token/delete', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
-)
+
+  return server
+}

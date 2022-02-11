@@ -1,95 +1,105 @@
-import { setupServer } from 'msw/node'
-import { rest } from 'msw'
+import fastify from 'fastify'
+import multipart from 'fastify-multipart'
 import { badToken } from '@test/utils'
 
-export const server = setupServer(
-  rest.put('/refile/files/:hash', (req, res, ctx) => {
+export function buildServer() {
+  const server = fastify()
+
+  server.register(multipart)
+
+  server.put<{
+    Params: {
+      hash: string
+    }
+  }>('/refile/files/:hash', async (req, reply) => {
     expect(req.params.hash).toBe('6dd7e8e932ea9d58555d7fee44a9b01a9bd7448e986636b728ee3711b01f37ce')
 
-    return res(
-      ctx.status(200)
-    )
-  })
-, rest.get('/refile/files/:hash', (req, res, ctx) => {
-    return res(
-      ctx.status(200)
-    , ctx.json({
-        hash: 'hash'
-      , location: null
-      , references: 0
-      })
-    )
+    const file = await req.file()
+    const buffer = await file.toBuffer()
+    const content = buffer.toString()
+    expect(content).toBe('hello world\n')
+
+    reply.status(200).send()
   })
 
-, rest.put('/refile/namespaces/:namespace/items/:id/files/:hash', (req, res, ctx) => {
-    if (badToken(req)) return res(ctx.status(401))
-
-    return res(
-      ctx.status(204)
-    )
+  server.get('/refile/files/:hash', (req, reply) => {
+    reply.status(200).send({
+      hash: 'hash'
+    , location: null
+    , references: 0
+    })
   })
 
-, rest.delete('/refile/namespaces/:namespace/items/:id/files/:hash', (req, res, ctx) => {
-    if (badToken(req)) return res(ctx.status(401))
+  server.put<{
+    Params: {
+      namespace: string
+      id: string
+      hash: string
+    }
+  }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
+    if (badToken(req)) return reply.status(401).send()
 
-    return res(
-      ctx.status(204)
-    )
+    reply.status(204).send()
   })
 
-, rest.delete('/refile/namespaces/:namespace/items/:id', (req, res, ctx) => {
-    if (badToken(req)) return res(ctx.status(401))
+  server.delete<{
+    Params: {
+      namespace: string
+      id: string
+      hash: string
+    }
+  }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
+    if (badToken(req)) return reply.status(401).send()
 
-    return res(
-      ctx.status(204)
-    )
+    reply.status(204).send()
   })
 
-, rest.delete('/refile/namespaces/:namespace', (req, res, ctx) => {
-    if (badToken(req)) return res(ctx.status(401))
+  server.delete<{
+    Params: {
+      namespace: string
+      id: string
+    }
+  }>('/refile/namespaces/:namespace/items/:id', async (req, reply) => {
+    if (badToken(req)) return reply.status(401).send()
 
-    return res(
-      ctx.status(204)
-    )
+    reply.status(204).send()
   })
 
-, rest.get('/refile/namespaces', (req, res, ctx) => {
-    return res(
-      ctx.status(200)
-    , ctx.json(['namespace'])
-    )
+  server.delete<{
+    Params: {
+      namespace: string
+    }
+  }>('/refile/namespaces/:namespace', async (req, reply) => {
+    if (badToken(req)) return reply.status(401).send()
+
+    reply.status(204).send()
   })
 
-, rest.get('/refile/namespaces/:namespace/items', (req, res, ctx) => {
-    if (badToken(req)) return res(ctx.status(401))
-
-    return res(
-      ctx.status(200)
-    , ctx.json(['id'])
-    )
+  server.get('/refile/namespaces', async (req, reply) => {
+    reply.status(200).send(['namespace'])
   })
 
-, rest.get('/refile/namespaces/:namespace/items/:id/files', (req, res, ctx) => {
-    if (badToken(req)) return res(ctx.status(401))
+  server.get('/refile/namespaces/:namespace/items', async (req, reply) => {
+    if (badToken(req)) return reply.status(401).send()
 
-    return res(
-      ctx.status(200)
-    , ctx.json(['hash'])
-    )
+    reply.status(200).send(['id'])
   })
 
-, rest.get('/refile/files/:hash/namespaces/:namespace/items', (req, res, ctx) => {
-    if (badToken(req)) return res(ctx.status(401))
+  server.get('/refile/namespaces/:namespace/items/:id/files', async (req, reply) => {
+    if (badToken(req)) return reply.status(401).send()
 
-    return res(
-      ctx.status(200)
-    , ctx.json(['id'])
-    )
+    reply.status(200).send(['hash'])
   })
 
-, rest.post('/refile/gc', (req, res, ctx) => {
-    return res(
-      ctx.status(204)
-    )
+  server.get('/refile/files/:hash/namespaces/:namespace/items', async (req, reply) => {
+    if (badToken(req)) return reply.status(401).send()
+
+    reply.status(200).send(['id'])
   })
-)
+
+  server.post('/refile/gc', async (req, reply) => {
+    reply.status(204).send()
+  })
+
+  return server
+}

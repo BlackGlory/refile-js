@@ -1,66 +1,63 @@
-import { setupServer } from 'msw/node'
-import { rest } from 'msw'
+import fastify from 'fastify'
 import { badAuth, badJson } from '@test/utils'
 
-export const server = setupServer(
-  rest.get('/admin/refile-with-token-policies', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+export function buildServer() {
+  const server = fastify()
 
-    return res(
-      ctx.status(200)
-    , ctx.json(['namespace'])
-    )
+  server.get('/admin/refile-with-token-policies', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
+
+    reply.status(200).send(['namespace'])
   })
 
-, rest.get('/admin/refile/:namespace/token-policies', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.get('/admin/refile/:namespace/token-policies', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(
-      ctx.status(200)
-    , ctx.json({
-        writeTokenRequired: true
-      , readTokenRequired: false
-      , deleteTokenRequired: null
-      })
-    )
+    reply.status(200).send({
+      writeTokenRequired: true
+    , readTokenRequired: false
+    , deleteTokenRequired: null
+    })
   })
 
-, rest.put('/admin/refile/:namespace/token-policies/write-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
-    if (badJson(req)) return res(ctx.status(400))
+  server.put('/admin/refile/:namespace/token-policies/write-token-required', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
+    if (badJson(req)) return reply.status(400).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.delete('/admin/refile/:namespace/token-policies/write-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.delete('/admin/refile/:namespace/token-policies/write-token-required', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.put('/admin/refile/:namespace/token-policies/read-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
-    if (badJson(req)) return res(ctx.status(400))
+  server.put('/admin/refile/:namespace/token-policies/read-token-required', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
+    if (badJson(req)) return reply.status(400).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.delete('/admin/refile/:namespace/token-policies/read-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.delete('/admin/refile/:namespace/token-policies/read-token-required', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.put('/admin/refile/:namespace/token-policies/delete-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
-    if (badJson(req)) return res(ctx.status(400))
+  server.put('/admin/refile/:namespace/token-policies/delete-token-required', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
+    if (badJson(req)) return reply.status(400).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
 
-, rest.delete('/admin/refile/:namespace/token-policies/delete-token-required', (req, res, ctx) => {
-    if (badAuth(req)) return res(ctx.status(401))
+  server.delete('/admin/refile/:namespace/token-policies/delete-token-required', async (req, reply) => {
+    if (badAuth(req)) return reply.status(401).send()
 
-    return res(ctx.status(204))
+    reply.status(204).send()
   })
-)
+
+  return server
+}

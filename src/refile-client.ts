@@ -70,16 +70,16 @@ export class RefileClient {
    * @throws {AbortError}
    */
   async uploadFile(
-    file: Blob | string
+    blobOrFilename: Blob | string
   , options: IRefileClientRequestOptionsWithoutToken = {}
   ): Promise<void> {
-    const { hash, hashList } = await getHashInfo(file)
+    const { hash, hashList } = await getHashInfo(blobOrFilename)
 
     const req = put(
       ...this.getCommonTransformers(options)
     , pathname(`/refile/files/${hash}`)
     , formDataField('hash', hashList)
-    , formDataField('file', getFile(file))
+    , formDataField('file', await getFile(blobOrFilename))
     )
 
     await fetch(req).then(ok)

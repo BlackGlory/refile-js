@@ -1,11 +1,10 @@
-import { server } from '@test/blacklist.mock'
+import { buildServer } from '@test/blacklist.mock'
 import { BlacklistClient } from '@src/blacklist-client'
-import { ADMIN_PASSWORD } from '@test/utils'
+import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
 import '@blackglory/jest-matchers'
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
-beforeEach(() => server.resetHandlers())
-afterAll(() => server.close())
+beforeAll(() => startService(buildServer))
+afterAll(stopService)
 
 describe('BlacklistClient', () => {
   test('getNamespaces(): Promise<string[]>', async () => {
@@ -43,7 +42,7 @@ describe('BlacklistClient', () => {
 
 function createClient() {
   return new BlacklistClient({
-    server: 'http://localhost'
+    server: getAddress()
   , adminPassword: ADMIN_PASSWORD
   })
 }

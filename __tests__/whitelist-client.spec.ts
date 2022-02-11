@@ -1,11 +1,10 @@
-import { server } from '@test/whitelist.mock'
+import { buildServer } from '@test/whitelist.mock'
 import { WhitelistClient } from '@src/whitelist-client'
-import { ADMIN_PASSWORD } from '@test/utils'
+import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
 import '@blackglory/jest-matchers'
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
-beforeEach(() => server.resetHandlers())
-afterAll(() => server.close())
+beforeAll(() => startService(buildServer))
+afterAll(stopService)
 
 describe('whitelist', () => {
   test('getNamespaces(): Promise<string[]>', async () => {
@@ -43,7 +42,7 @@ describe('whitelist', () => {
 
 function createClient() {
   return new WhitelistClient({
-    server: 'http://localhost'
+    server: getAddress()
   , adminPassword: ADMIN_PASSWORD
   })
 }
