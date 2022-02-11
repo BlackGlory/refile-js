@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/BlackGlory/refile-js/compare/v0.7.0...v0.8.0) (2022-02-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires Node.js v16
+
+* use extra-fetch v2 ([5fe8f32](https://github.com/BlackGlory/refile-js/commit/5fe8f32def5bf38df109f9836b128143c22559cd))
+
 ## [0.7.0](https://github.com/BlackGlory/refile-js/compare/v0.6.1...v0.7.0) (2022-02-10)
 
 
