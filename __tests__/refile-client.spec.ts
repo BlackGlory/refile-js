@@ -8,7 +8,7 @@ beforeAll(() => startService(buildServer))
 afterAll(stopService)
 
 describe('RefileClient', () => {
-  test('uplodatFile(file: Blob | string): Promise<void>', async () => {
+  test('uploadFile(file: Blob | string): Promise<void>', async () => {
     const client = createClient()
 
     const result = client.uploadFile(path.join(__dirname, './fixtures/file.txt'))

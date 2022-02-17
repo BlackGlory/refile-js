@@ -1,5 +1,4 @@
-import { FastifyRequest } from 'fastify'
-import { FastifyInstance } from 'fastify'
+import { FastifyRequest, FastifyInstance } from 'fastify'
 
 export const ADMIN_PASSWORD = 'password'
 export const TOKEN = 'token'
