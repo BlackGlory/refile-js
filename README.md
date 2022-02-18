@@ -55,6 +55,14 @@ RefileClient#getFileInfo(hash: string, options?: IRefileClientRequestOptions): P
 }>
 ```
 
+#### getFileLocation
+```ts
+RefileClient#getFileLocation(
+  hash: string
+, options?: IRefileClientRequestOptions
+): Promise<string | undefined>
+```
+
 #### setReference
 ```ts
 RefileClient#setReference(

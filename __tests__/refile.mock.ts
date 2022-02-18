@@ -30,6 +30,16 @@ export function buildServer() {
     })
   })
 
+  server.get<{
+    Params: { hash: string }
+  }>('/refile/files/:hash/location', (req, reply) => {
+    if (req.params.hash === 'not-exist') {
+      reply.status(404).send()
+    } else {
+      reply.status(200).send('location')
+    }
+  })
+
   server.put<{
     Params: {
       namespace: string

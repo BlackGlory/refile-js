@@ -33,6 +33,34 @@ describe('RefileClient', () => {
     })
   })
 
+  describe('getFileLocation(hash: string): Promise<string | undefined>', () => {
+    describe('200', () => {
+      it('returns string', async () => {
+        const client = createClient()
+        const hash = 'exist'
+
+        const result = client.getFileLocation(hash)
+        const proResult = await result
+
+        expect(result).toBePromise()
+        expect(proResult).toBe('location')
+      })
+    })
+
+    describe('404', () => {
+      it('returns undefined', async () => {
+        const client = createClient()
+        const hash = 'not-exist'
+
+        const result = client.getFileLocation(hash)
+        const proResult = await result
+
+        expect(result).toBePromise()
+        expect(proResult).toBeUndefined()
+      })
+    })
+  })
+
   test('setReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'

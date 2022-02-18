@@ -1,8 +1,9 @@
 import { fetch } from 'extra-fetch'
+import { NotFound } from '@blackglory/http-status'
 import { post, put, get, del, IHTTPOptionsTransformer } from 'extra-request'
 import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth, header }
   from 'extra-request/transformers/index.js'
-import { ok, toJSON } from 'extra-response'
+import { ok, toJSON, toText } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info'
 import { getFile } from '@utils/get-file'
 import { raceAbortSignals, timeoutSignal } from 'extra-abort'
@@ -100,6 +101,28 @@ export class RefileClient {
     return await fetch(req)
       .then(ok)
       .then(toJSON) as IFileInfo
+  }
+
+  /**
+   * @throws {AbortError} 
+   */
+  async getFileLocation(
+    hash: string
+  , options: IRefileClientRequestOptions = {}
+  ): Promise<string | undefined> {
+    const req = get(
+      ...this.getCommonTransformers(options)
+    , pathname(`/refile/files/${hash}/location`)
+    )
+
+    try {
+      return await fetch(req)
+        .then(ok)
+        .then(toText)
+    } catch (e) {
+      if (e instanceof NotFound) return undefined
+      throw e
+    }
   }
 
   /**
