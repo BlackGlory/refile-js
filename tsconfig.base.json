@@ -14,15 +14,5 @@
     , "@test/*": ["__tests__/*"]
     , "extra-request/transformers/*": ["node_modules/extra-request/lib/es2018/transformers/*"]
     }
-  , "plugins" : [
-      {
-        "transform": "typescript-transform-paths"
-      , "exclude" : ["**/node_modules/**"]
-      }
-    , {
-        "transform": "typescript-transform-paths", "afterDeclarations": true
-      , "exclude" : ["**/node_modules/**"]
-      }
-    ]
   }
 }
