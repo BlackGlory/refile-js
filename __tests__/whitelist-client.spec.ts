@@ -1,7 +1,6 @@
 import { buildServer } from '@test/whitelist.mock'
 import { WhitelistClient } from '@src/whitelist-client'
 import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
-import '@blackglory/jest-matchers'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)
@@ -10,33 +9,27 @@ describe('whitelist', () => {
   test('getNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
-    const result = client.getNamespaces()
-    const proResult = await result
+    const result = await client.getNamespaces()
 
-    expect(result).toBePromise()
-    expect(proResult).toStrictEqual(['namespace'])
+    expect(result).toStrictEqual(['namespace'])
   })
 
   test('add(namespace: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
-    const result = client.add(namespace)
-    const proResult = await result
+    const result = await client.add(namespace)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('remove(namespace: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
-    const result = client.remove(namespace)
-    const proResult = await result
+    const result = await client.remove(namespace)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 })
 

@@ -4,11 +4,11 @@ import { post, put, get, del, IHTTPOptionsTransformer } from 'extra-request'
 import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth, header }
   from 'extra-request/transformers/index.js'
 import { ok, toJSON, toText } from 'extra-response'
-import { getHashInfo } from '@utils/get-hash-info'
-import { getFile } from '@utils/get-file'
+import { getHashInfo } from '@utils/get-hash-info.js'
+import { getFile } from '@utils/get-file.js'
 import { raceAbortSignals, timeoutSignal } from 'extra-abort'
 import { Falsy } from 'justypes'
-import { expectedVersion } from '@src/utils'
+import { expectedVersion } from '@src/utils.js'
 
 export { HTTPClientError } from '@blackglory/http-status'
 

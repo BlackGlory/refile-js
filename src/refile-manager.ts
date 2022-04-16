@@ -1,7 +1,7 @@
-import { BlacklistClient } from './blacklist-client'
-import { WhitelistClient } from './whitelist-client'
-import { TokenPolicyClient } from './token-policy-client'
-import { TokenClient } from './token-client'
+import { BlacklistClient } from './blacklist-client.js'
+import { WhitelistClient } from './whitelist-client.js'
+import { TokenPolicyClient } from './token-policy-client.js'
+import { TokenClient } from './token-client.js'
 
 export interface IRefileManagerOptions {
   server: string

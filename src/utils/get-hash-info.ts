@@ -2,9 +2,9 @@ import * as fs from 'fs'
 import { splitHash, ProgressiveHash } from 'split-hash'
 import * as crypto from 'crypto'
 import { toArrayAsync } from 'iterable-operator'
-import { IHashInfo } from '@src/utils'
+import { IHashInfo } from '@src/utils.js'
 import { isString } from '@blackglory/types'
-import { HASH_BLOCK_SIZE } from './constants'
+import { HASH_BLOCK_SIZE } from './constants.js'
 import { assert } from '@blackglory/errors'
 
 export async function getHashInfo(filename: string | Blob): Promise<IHashInfo> {

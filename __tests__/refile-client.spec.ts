@@ -1,8 +1,7 @@
 import { buildServer } from '@test/refile.mock'
 import { RefileClient } from '@src/refile-client'
 import { TOKEN, startService, stopService, getAddress } from '@test/utils'
-import * as path from 'path'
-import '@blackglory/jest-matchers'
+import { fileURLToPath } from 'url'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)
@@ -11,22 +10,18 @@ describe('RefileClient', () => {
   test('uploadFile(file: Blob | string): Promise<void>', async () => {
     const client = createClient()
 
-    const result = client.uploadFile(path.join(__dirname, './fixtures/file.txt'))
-    const proResult = await result
+    const result = await client.uploadFile(fileURLToPath(new URL('./fixtures/file.txt', import.meta.url)))
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('getFileInfo(hash: string): Promise<RefileClientRequestOptions>', async () => {
     const client = createClient()
     const hash = 'hash'
 
-    const result = client.getFileInfo(hash)
-    const proResult = await result
+    const result = await client.getFileInfo(hash)
 
-    expect(result).toBePromise()
-    expect(proResult).toEqual({
+    expect(result).toEqual({
       hash: 'hash'
     , location: null
     , references: 0
@@ -39,11 +34,9 @@ describe('RefileClient', () => {
         const client = createClient()
         const hash = 'exist'
 
-        const result = client.getFileLocation(hash)
-        const proResult = await result
+        const result = await client.getFileLocation(hash)
 
-        expect(result).toBePromise()
-        expect(proResult).toBe('location')
+        expect(result).toBe('location')
       })
     })
 
@@ -52,11 +45,9 @@ describe('RefileClient', () => {
         const client = createClient()
         const hash = 'not-exist'
 
-        const result = client.getFileLocation(hash)
-        const proResult = await result
+        const result = await client.getFileLocation(hash)
 
-        expect(result).toBePromise()
-        expect(proResult).toBeUndefined()
+        expect(result).toBeUndefined()
       })
     })
   })
@@ -67,11 +58,9 @@ describe('RefileClient', () => {
     const id = 'id'
     const fileHash = 'hash'
 
-    const result = client.setReference(namespace, id, fileHash)
-    const proResult = await result
+    const result = await client.setReference(namespace, id, fileHash)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('removeReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
@@ -80,11 +69,9 @@ describe('RefileClient', () => {
     const id = 'id'
     const fileHash = 'hash'
 
-    const result = client.removeReference(namespace, id, fileHash)
-    const proResult = await result
+    const result = await client.removeReference(namespace, id, fileHash)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('removeReferencesByItem(namespace: string, id: string): Promise<void>', async () => {
@@ -92,43 +79,35 @@ describe('RefileClient', () => {
     const namespace = 'namespace'
     const id = 'id'
 
-    const result = client.removeReferencesByItem(namespace, id)
-    const proResult = await result
+    const result = await client.removeReferencesByItem(namespace, id)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('removeReferencesByNamespace(namespace: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
-    const result = client.removeReferencesByNamespace(namespace)
-    const proResult = await result
+    const result = await client.removeReferencesByNamespace(namespace)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('getAllNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
-    const result = client.getAllNamespaces()
-    const proResult = await result
+    const result = await client.getAllNamespaces()
 
-    expect(result).toBePromise()
-    expect(proResult).toEqual(['namespace'])
+    expect(result).toEqual(['namespace'])
   })
 
   test('getAllItemIds(namespace: string): Promise<string[]>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
-    const result = client.getAllItemIds(namespace)
-    const proResult = await result
+    const result = await client.getAllItemIds(namespace)
 
-    expect(result).toBePromise()
-    expect(proResult).toEqual(['id'])
+    expect(result).toEqual(['id'])
   })
 
   test('getFileHashesByItem(namespace: string, id: string): Promise<string[]>', async () => {
@@ -136,11 +115,9 @@ describe('RefileClient', () => {
     const namespace = 'namespace'
     const id = 'id'
 
-    const result = client.getFileHashesByItem(namespace, id)
-    const proResult = await result
+    const result = await client.getFileHashesByItem(namespace, id)
 
-    expect(result).toBePromise()
-    expect(proResult).toEqual(['hash'])
+    expect(result).toEqual(['hash'])
   })
 
   test('getItemIdsByFile(fileHash: string, namespace: string): Promise<string[]>', async () => {
@@ -148,21 +125,17 @@ describe('RefileClient', () => {
     const fileHash = 'hash'
     const namespace = 'namespace'
 
-    const result = client.getItemIdsByFile(fileHash, namespace)
-    const proResult = await result
+    const result = await client.getItemIdsByFile(fileHash, namespace)
 
-    expect(result).toBePromise()
-    expect(proResult).toEqual(['id'])
+    expect(result).toEqual(['id'])
   })
 
   test('collectGarbage(): Promise<void>', async () => {
     const client = createClient()
 
-    const result = client.collectGarbage()
-    const proResult = await result
+    const result = await client.collectGarbage()
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 })
 

@@ -1,7 +1,6 @@
 import { buildServer } from '@test/token.mock'
 import { TokenClient } from '@src/token-client'
 import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
-import '@blackglory/jest-matchers'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)
@@ -10,11 +9,9 @@ describe('TokenClient', () => {
   test('getNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
-    const result = client.getNamespaces()
-    const proResult = await result
+    const result = await client.getNamespaces()
 
-    expect(result).toBePromise()
-    expect(proResult).toStrictEqual(['namespace'])
+    expect(result).toStrictEqual(['namespace'])
   })
 
   test(`
@@ -27,11 +24,9 @@ describe('TokenClient', () => {
     const client = createClient()
     const namespace = 'namespace'
 
-    const result = client.getTokens(namespace)
-    const proResult = await result
+    const result = await client.getTokens(namespace)
 
-    expect(result).toBePromise()
-    expect(proResult).toStrictEqual([{
+    expect(result).toStrictEqual([{
       token: 'token'
     , write: true
     , read: false
@@ -44,11 +39,9 @@ describe('TokenClient', () => {
     const namespace = 'namespace'
     const token = 'token'
 
-    const result = client.addWriteToken(namespace, token)
-    const proResult = await result
+    const result = await client.addWriteToken(namespace, token)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('removeWriteToken(namespace: string, token: string): Promise<void>', async () => {
@@ -56,11 +49,9 @@ describe('TokenClient', () => {
     const namespace = 'namespace'
     const token = 'token'
 
-    const result = client.removeWriteToken(namespace, token)
-    const proResult = await result
+    const result = await client.removeWriteToken(namespace, token)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('addReadToken(namespace: string, token: string): Promise<void>', async () => {
@@ -68,11 +59,9 @@ describe('TokenClient', () => {
     const namespace = 'namespace'
     const token = 'token'
 
-    const result = client.addReadToken(namespace, token)
-    const proResult = await result
+    const result = await client.addReadToken(namespace, token)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('removeReadToken(namespace: string, token: string): Promise<void>', async () => {
@@ -80,11 +69,9 @@ describe('TokenClient', () => {
     const namespace = 'namespace'
     const token = 'token'
 
-    const result = client.removeReadToken(namespace, token)
-    const proResult = await result
+    const result = await client.removeReadToken(namespace, token)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('addDeleteToken(namespace: string, token: string): Promise<void>', async () => {
@@ -92,11 +79,9 @@ describe('TokenClient', () => {
     const namespace = 'namespace'
     const token = 'token'
 
-    const result = client.addDeleteToken(namespace, token)
-    const proResult = await result
+    const result = await client.addDeleteToken(namespace, token)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 
   test('removeDeleteToken(namespace: string, token: string): Promise<void>', async () => {
@@ -104,11 +89,9 @@ describe('TokenClient', () => {
     const namespace = 'namespace'
     const token = 'token'
 
-    const result = client.removeDeleteToken(namespace, token)
-    const proResult = await result
+    const result = await client.removeDeleteToken(namespace, token)
 
-    expect(result).toBePromise()
-    expect(proResult).toBeUndefined()
+    expect(result).toBeUndefined()
   })
 })
 

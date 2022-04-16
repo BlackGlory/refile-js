@@ -1,4 +1,4 @@
-export * from './get-file-hash'
-export * from './refile-client'
-export * from './refile-manager'
+export * from './get-file-hash.js'
+export * from './refile-client.js'
+export * from './refile-manager.js'
 export { HTTPError } from 'extra-response'

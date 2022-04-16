@@ -1,7 +1,7 @@
 import { IHTTPOptionsTransformer } from 'extra-request'
 import { url, signal, keepalive, bearerAuth, header } from 'extra-request/transformers/index.js'
 import { timeoutSignal, raceAbortSignals } from 'extra-abort'
-import type { IRefileManagerOptions } from './refile-manager'
+import type { IRefileManagerOptions } from './refile-manager.js'
 
 export interface IRefileManagerRequestOptions {
   signal?: AbortSignal
