@@ -1,5 +1,5 @@
 import fastify from 'fastify'
-import multipart from 'fastify-multipart'
+import multipart from '@fastify/multipart'
 import { badToken } from '@test/utils'
 
 export function buildServer() {

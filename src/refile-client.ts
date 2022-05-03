@@ -2,7 +2,7 @@ import { fetch } from 'extra-fetch'
 import { NotFound } from '@blackglory/http-status'
 import { post, put, get, del, IHTTPOptionsTransformer } from 'extra-request'
 import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth, header }
-  from 'extra-request/transformers/index.js'
+  from 'extra-request/transformers/index'
 import { ok, toJSON, toText } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info.js'
 import { getFile } from '@utils/get-file.js'
