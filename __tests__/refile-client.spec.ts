@@ -1,6 +1,6 @@
-import { buildServer } from '@test/refile.mock'
-import { RefileClient } from '@src/refile-client'
-import { TOKEN, startService, stopService, getAddress } from '@test/utils'
+import { buildServer } from '@test/refile.mock.js'
+import { RefileClient } from '@src/refile-client.js'
+import { TOKEN, startService, stopService, getAddress } from '@test/utils.js'
 import { fileURLToPath } from 'url'
 
 beforeAll(() => startService(buildServer))
@@ -10,7 +10,9 @@ describe('RefileClient', () => {
   test('uploadFile(file: Blob | string): Promise<void>', async () => {
     const client = createClient()
 
-    const result = await client.uploadFile(fileURLToPath(new URL('./fixtures/file.txt', import.meta.url)))
+    const result = await client.uploadFile(
+      fileURLToPath(new URL('./fixtures/file.txt', import.meta.url))
+    )
 
     expect(result).toBeUndefined()
   })

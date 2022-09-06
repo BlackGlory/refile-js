@@ -1,5 +1,5 @@
-import fastify from 'fastify'
-import { badAuth } from '@test/utils'
+import { fastify } from 'fastify'
+import { badAuth } from '@test/utils.js'
 
 export function buildServer() {
   const server = fastify()

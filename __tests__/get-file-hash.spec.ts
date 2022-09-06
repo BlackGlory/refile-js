@@ -1,4 +1,4 @@
-import { getFileHash } from '@src/get-file-hash'
+import { getFileHash } from '@src/get-file-hash.js'
 import { fileURLToPath } from 'url'
 
 describe('getFileHash(file: Blob | string): Promise<string>', () => {

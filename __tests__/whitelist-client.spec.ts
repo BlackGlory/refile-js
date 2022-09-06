@@ -1,6 +1,6 @@
-import { buildServer } from '@test/whitelist.mock'
-import { WhitelistClient } from '@src/whitelist-client'
-import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
+import { buildServer } from '@test/whitelist.mock.js'
+import { WhitelistClient } from '@src/whitelist-client.js'
+import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils.js'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)

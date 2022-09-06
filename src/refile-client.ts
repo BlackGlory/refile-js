@@ -1,6 +1,6 @@
 import { fetch } from 'extra-fetch'
 import { NotFound } from '@blackglory/http-status'
-import { post, put, get, del, IHTTPOptionsTransformer } from 'extra-request'
+import { post, put, get, del, IRequestOptionsTransformer } from 'extra-request'
 import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth, header }
   from 'extra-request/transformers/index'
 import { ok, toJSON, toText } from 'extra-response'
@@ -47,7 +47,7 @@ export class RefileClient {
 
   private getCommonTransformers(
     options: IRefileClientRequestOptions
-  ): Array<IHTTPOptionsTransformer | Falsy> {
+  ): Array<IRequestOptionsTransformer | Falsy> {
     const token = options.token ?? this.options.token
     const auth = this.options.basicAuth
 

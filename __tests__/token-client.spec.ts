@@ -1,6 +1,6 @@
-import { buildServer } from '@test/token.mock'
-import { TokenClient } from '@src/token-client'
-import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
+import { buildServer } from '@test/token.mock.js'
+import { TokenClient } from '@src/token-client.js'
+import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils.js'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)

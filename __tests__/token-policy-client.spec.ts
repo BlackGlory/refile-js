@@ -1,6 +1,6 @@
-import { buildServer } from '@test/token-policy.mock'
-import { TokenPolicyClient } from '@src/token-policy-client'
-import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils'
+import { buildServer } from '@test/token-policy.mock.js'
+import { TokenPolicyClient } from '@src/token-policy-client.js'
+import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils.js'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)

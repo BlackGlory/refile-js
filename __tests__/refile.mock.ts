@@ -1,10 +1,11 @@
-import fastify from 'fastify'
+import { fastify } from 'fastify'
 import multipart from '@fastify/multipart'
-import { badToken } from '@test/utils'
+import { badToken } from '@test/utils.js'
 
 export function buildServer() {
   const server = fastify()
 
+  // @ts-ignore
   server.register(multipart)
 
   server.put<{

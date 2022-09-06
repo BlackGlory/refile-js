@@ -57,10 +57,10 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "standard-version": "^9.3.2",
-    "ts-jest": "^28.0.0-next.3",
+    "ts-jest": "^28.0.8",
     "ts-patch": "^2.0.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.0-beta",
+    "typescript": "^4.8.2",
     "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
@@ -69,7 +69,7 @@
     "@blackglory/types": "^1.1.0",
     "extra-abort": "^0.1.2",
     "extra-fetch": "^3.0.6",
-    "extra-request": "^7.0.1",
+    "extra-request": "^8.0.0",
     "extra-response": "^0.3.11",
     "iterable-operator": "^1.1.0",
     "justypes": "^2.0.0",
