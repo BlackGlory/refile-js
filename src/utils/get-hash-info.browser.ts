@@ -8,7 +8,8 @@ import { assert } from '@blackglory/errors'
 export async function getHashInfo(blob: Blob | string): Promise<IHashInfo> {
   assert(isntString(blob), 'The function only accepts Blob on browser side')
 
-  const stream = blob.stream()
+  // TypeScript无法区分WHATWG的Blob和Node.js的Blob, 只好在此手动设置返回值类型.
+  const stream = blob.stream() as unknown as ReadableStream
   const hashList = await getHashList(stream)
   const hash = await mergeHash(hashList)
   return { hash, hashList }
