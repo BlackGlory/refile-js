@@ -193,7 +193,9 @@ export class RefileClient {
   /**
    * @throws {AbortError}
    */
-  async getAllNamespaces(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<string[]> {
+  async getAllNamespaces(
+    options: IRefileClientRequestOptionsWithoutToken = {}
+  ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
     , pathname('/refile/namespaces')
