@@ -114,6 +114,12 @@ class RefileClient {
 
 ### RefileManager
 ```ts
+interface IRefileManagerRequestOptions {
+  signal?: AbortSignal
+  keepalive?: boolean
+  timeout?: number | false
+}
+
 interface IRefileManagerOptions {
   server: string
   adminPassword: string
@@ -124,32 +130,32 @@ interface IRefileManagerOptions {
 class RefileManager {
   constructor(options: IRefileManagerOptions)
 
-  Blacklist: BlacklistClient
-  Whitelist: WhitelistClient
-  TokenPolicy: TokenPolicyClient
-  Token: TokenClient
+  Blacklist: BlacklistManager
+  Whitelist: WhitelistManager
+  TokenPolicy: TokenPolicyManager
+  Token: TokenManager
 }
 ```
 
-#### BlacklistClient
+#### BlacklistManager
 ```ts
-class BlacklistClient {
+class BlacklistManager {
   getNamespaces(options: IRefileManagerRequestOptions = {}): Promise<string[]>
   add(namespace: string, options: IRefileManagerRequestOptions = {}): Promise<void>
   remove(namespace: string, options: IRefileManagerRequestOptions = {}): Promise<void>
 }
 ```
 
-#### WhitelistClient
+#### WhitelistManager
 ```ts
-class WhitelistClient {
+class WhitelistManager {
   getNamespaces(options: IRefileManagerRequestOptions = {}): Promise<string[]>
   add(namespace: string, options: IRefileManagerRequestOptions = {}): Promise<void>
   remove(namespace: string, options: IRefileManagerRequestOptions = {}): Promise<void>
 }
 ```
 
-#### TokenPolicyClient
+#### TokenPolicyManager
 ```ts
 interface ITokenPolicy {
   writeTokenRequired: boolean | null
@@ -157,7 +163,7 @@ interface ITokenPolicy {
   deleteTokenRequired: boolean | null
 }
 
-class TokenPolicyClient {
+class TokenPolicyManager {
   getNamespaces(options: IRefileManagerRequestOptions = {}): Promise<string[]>
   get(
     namespace: string
@@ -193,7 +199,7 @@ class TokenPolicyClient {
 }
 ```
 
-#### TokenClient
+#### TokenManager
 ```ts
 interface ITokenInfo {
   token: string
@@ -202,7 +208,7 @@ interface ITokenInfo {
   delete: boolean
 }
 
-class TokenClient {
+class TokenManager {
   getNamespaces(options: IRefileManagerRequestOptions = {}): Promise<string[]>
   getTokens(
     namespace: string

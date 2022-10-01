@@ -10,6 +10,7 @@
   , "baseUrl": "."
   , "paths": {
       "@src/*": ["src/*"]
+    , "@manager/*": ["src/manager/*"]
     , "@utils/*": ["src/utils/*"]
     , "@test/*": ["__tests__/*"]
     }

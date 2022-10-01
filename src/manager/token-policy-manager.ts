@@ -1,8 +1,8 @@
 import { fetch } from 'extra-fetch'
 import { get, put, del } from 'extra-request'
-import { pathname, json } from 'extra-request/transformers/index'
+import { pathname, json } from 'extra-request/transformers'
 import { ok, toJSON } from 'extra-response'
-import { IRefileManagerRequestOptions, RefileManagerBase } from './utils.js'
+import { IRefileManagerRequestOptions, Base } from './base.js'
 
 interface ITokenPolicy {
   writeTokenRequired: boolean | null
@@ -10,7 +10,7 @@ interface ITokenPolicy {
   deleteTokenRequired: boolean | null
 }
 
-export class TokenPolicyClient extends RefileManagerBase {
+export class TokenPolicyManager extends Base {
   /**
    * @throws {AbortError}
    */

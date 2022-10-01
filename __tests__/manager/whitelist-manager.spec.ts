@@ -1,13 +1,13 @@
-import { buildServer } from '@test/blacklist.mock.js'
-import { BlacklistClient } from '@src/blacklist-client.js'
+import { buildServer } from './whitelist-manager.mock.js'
+import { WhitelistManager } from '@manager/whitelist-manager.js'
 import { ADMIN_PASSWORD, startService, stopService, getAddress } from '@test/utils.js'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)
 
-describe('BlacklistClient', () => {
+describe('whitelist', () => {
   test('getNamespaces(): Promise<string[]>', async () => {
-    const client = createClient()
+    const client = createManager()
 
     const result = await client.getNamespaces()
 
@@ -15,7 +15,7 @@ describe('BlacklistClient', () => {
   })
 
   test('add(namespace: string): Promise<void>', async () => {
-    const client = createClient()
+    const client = createManager()
     const namespace = 'namespace'
 
     const result = await client.add(namespace)
@@ -24,7 +24,7 @@ describe('BlacklistClient', () => {
   })
 
   test('remove(namespace: string): Promise<void>', async () => {
-    const client = createClient()
+    const client = createManager()
     const namespace = 'namespace'
 
     const result = await client.remove(namespace)
@@ -33,8 +33,8 @@ describe('BlacklistClient', () => {
   })
 })
 
-function createClient() {
-  return new BlacklistClient({
+function createManager() {
+  return new WhitelistManager({
     server: getAddress()
   , adminPassword: ADMIN_PASSWORD
   })

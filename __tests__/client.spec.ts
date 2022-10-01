@@ -1,5 +1,5 @@
-import { buildServer } from '@test/refile.mock.js'
-import { RefileClient } from '@src/refile-client.js'
+import { buildServer } from '@test/client.mock.js'
+import { RefileClient } from '@src/client.js'
 import { TOKEN, startService, stopService, getAddress } from '@test/utils.js'
 import { fileURLToPath } from 'url'
 

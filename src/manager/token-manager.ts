@@ -2,7 +2,7 @@ import { fetch } from 'extra-fetch'
 import { get, put, del } from 'extra-request'
 import { pathname } from 'extra-request/transformers/index'
 import { ok, toJSON } from 'extra-response'
-import { IRefileManagerRequestOptions, RefileManagerBase } from './utils.js'
+import { IRefileManagerRequestOptions, Base } from './base.js'
 
 interface ITokenInfo {
   token: string
@@ -11,7 +11,7 @@ interface ITokenInfo {
   delete: boolean
 }
 
-export class TokenClient extends RefileManagerBase {
+export class TokenManager extends Base {
   /**
    * @throws {AbortError}
    */
