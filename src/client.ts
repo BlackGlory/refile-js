@@ -10,8 +10,6 @@ import { raceAbortSignals, timeoutSignal } from 'extra-abort'
 import { Falsy } from 'justypes'
 import { expectedVersion } from '@src/utils.js'
 
-export { HTTPClientError } from '@blackglory/http-status'
-
 interface IFileInfo {
   hash: string
   location: string | null
