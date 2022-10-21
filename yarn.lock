@@ -290,11 +290,6 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@blackglory/errors@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@blackglory/errors/-/errors-1.1.2.tgz#0577f01ca13850049efa0dd729e1a26e77e1dc3a"
-  integrity sha512-THXSkTUB5eXSn7Yj01TgizNqw2rRnkNj0t6drNtmGQNJRoh4qLdSD0WUiM6ClGgKTdaBJbAarRqG/6Gn/NjLig==
-
 "@blackglory/errors@^2.2.1", "@blackglory/errors@^2.2.2":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@blackglory/errors/-/errors-2.2.2.tgz#44dd18531b97c8b1e9892bb6022b92a2c0a112ae"
@@ -311,12 +306,12 @@
     extra-timers "^0.2.5"
     justypes "^2.0.0"
 
-"@blackglory/http-status@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@blackglory/http-status/-/http-status-1.0.2.tgz#29edda1748252988f6e2b6ef32a436168012e74d"
-  integrity sha512-H8BUIcOyaPPjHafM3PcTYU/W/Gar+7AcDnJKJkFFcmGwWpmvxLR6ivhAm9wBuaOhh9ZDtg21zIbfzCDyVPvosg==
+"@blackglory/http-status@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@blackglory/http-status/-/http-status-1.0.3.tgz#c2ec8939d2695131f5c0384c9b5c33a9e411ba51"
+  integrity sha512-lee1DP6SSnxbXj6kEhScEjn5hePENUpeh1GZEQ5XNfxAJiOT4vTMtny7yhy6NdSycZEHGOM6h5ASumLRU47eHw==
   dependencies:
-    "@blackglory/errors" "^1.1.2"
+    "@blackglory/errors" "^2.2.2"
 
 "@blackglory/jest-resolver@^0.2.1":
   version "0.2.1"
