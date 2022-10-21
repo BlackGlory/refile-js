@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/BlackGlory/refile-js/compare/v0.10.6...v0.11.0) (2022-10-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* Removed `HTTPStatus`
+
+* replace `HTTPStatus` with peer dependencies ([7c8d3fc](https://github.com/BlackGlory/refile-js/commit/7c8d3fcd8f5926c69c020bebbebe1732288718af))
+
 ### [0.10.6](https://github.com/BlackGlory/refile-js/compare/v0.10.5...v0.10.6) (2022-10-21)
 
 ### [0.10.5](https://github.com/BlackGlory/refile-js/compare/v0.10.4...v0.10.5) (2022-10-20)
