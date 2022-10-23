@@ -1,6 +1,6 @@
 import { fetch } from 'extra-fetch'
 import { get, put, del } from 'extra-request'
-import { pathname } from 'extra-request/transformers/index'
+import { appendPathname } from 'extra-request/transformers/index'
 import { ok, toJSON } from 'extra-response'
 import { IRefileManagerRequestOptions, Base } from './base.js'
 
@@ -18,7 +18,7 @@ export class TokenManager extends Base {
   async getNamespaces(options: IRefileManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname('/admin/refile-with-tokens')
+    , appendPathname('/admin/refile-with-tokens')
     )
 
     return await fetch(req)
@@ -35,7 +35,7 @@ export class TokenManager extends Base {
   ): Promise<ITokenInfo[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/tokens`)
+    , appendPathname(`/admin/refile/${namespace}/tokens`)
     )
 
     return await fetch(req)
@@ -53,7 +53,7 @@ export class TokenManager extends Base {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/tokens/${token}/write`)
+    , appendPathname(`/admin/refile/${namespace}/tokens/${token}/write`)
     )
 
     await fetch(req).then(ok)
@@ -69,7 +69,7 @@ export class TokenManager extends Base {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/tokens/${token}/write`)
+    , appendPathname(`/admin/refile/${namespace}/tokens/${token}/write`)
     )
 
     await fetch(req).then(ok)
@@ -85,7 +85,7 @@ export class TokenManager extends Base {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/tokens/${token}/read`)
+    , appendPathname(`/admin/refile/${namespace}/tokens/${token}/read`)
     )
 
     await fetch(req).then(ok)
@@ -101,7 +101,7 @@ export class TokenManager extends Base {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/tokens/${token}/read`)
+    , appendPathname(`/admin/refile/${namespace}/tokens/${token}/read`)
     )
 
     await fetch(req).then(ok)
@@ -117,7 +117,7 @@ export class TokenManager extends Base {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/tokens/${token}/delete`)
+    , appendPathname(`/admin/refile/${namespace}/tokens/${token}/delete`)
     )
 
     await fetch(req).then(ok)
@@ -133,7 +133,7 @@ export class TokenManager extends Base {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/tokens/${token}/delete`)
+    , appendPathname(`/admin/refile/${namespace}/tokens/${token}/delete`)
     )
 
     await fetch(req).then(ok)

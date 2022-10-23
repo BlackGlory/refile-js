@@ -1,7 +1,7 @@
 import { fetch } from 'extra-fetch'
 import { NotFound } from '@blackglory/http-status'
 import { post, put, get, del, IRequestOptionsTransformer } from 'extra-request'
-import { url, pathname, searchParams, signal, formDataField, keepalive, basicAuth, header }
+import { url, appendPathname, searchParams, signal, formDataField, keepalive, basicAuth, header }
   from 'extra-request/transformers/index'
 import { ok, toJSON, toText } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info.js'
@@ -76,7 +76,7 @@ export class RefileClient {
 
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/files/${hash}`)
+    , appendPathname(`/refile/files/${hash}`)
     , formDataField('hash', hashList)
     , formDataField('file', await getFile(blobOrFilename))
     )
@@ -93,7 +93,7 @@ export class RefileClient {
   ): Promise<IFileInfo> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/files/${hash}`)
+    , appendPathname(`/refile/files/${hash}`)
     )
 
     return await fetch(req)
@@ -110,7 +110,7 @@ export class RefileClient {
   ): Promise<string | undefined> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/files/${hash}/location`)
+    , appendPathname(`/refile/files/${hash}/location`)
     )
 
     try {
@@ -134,7 +134,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
+    , appendPathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
     )
 
     await fetch(req).then(ok)
@@ -151,7 +151,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
+    , appendPathname(`/refile/namespaces/${namespace}/items/${id}/files/${fileHash}`)
     )
 
     await fetch(req).then(ok)
@@ -167,7 +167,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/namespaces/${namespace}/items/${id}`)
+    , appendPathname(`/refile/namespaces/${namespace}/items/${id}`)
     )
 
     await fetch(req).then(ok)
@@ -182,7 +182,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/namespaces/${namespace}`)
+    , appendPathname(`/refile/namespaces/${namespace}`)
     )
 
     await fetch(req).then(ok)
@@ -196,7 +196,7 @@ export class RefileClient {
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname('/refile/namespaces')
+    , appendPathname('/refile/namespaces')
     )
 
     return await fetch(req)
@@ -213,7 +213,7 @@ export class RefileClient {
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/namespaces/${namespace}/items`)
+    , appendPathname(`/refile/namespaces/${namespace}/items`)
     )
 
     return await fetch(req)
@@ -231,7 +231,7 @@ export class RefileClient {
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/namespaces/${namespace}/items/${id}/files`)
+    , appendPathname(`/refile/namespaces/${namespace}/items/${id}/files`)
     )
 
     return await fetch(req)
@@ -249,7 +249,7 @@ export class RefileClient {
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname(`/refile/files/${fileHash}/namespaces/${namespace}/items`)
+    , appendPathname(`/refile/files/${fileHash}/namespaces/${namespace}/items`)
     )
 
     return await fetch(req)
@@ -263,7 +263,7 @@ export class RefileClient {
   async collectGarbage(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<void> {
     const req = post(
       ...this.getCommonTransformers(options)
-    , pathname('/refile/gc')
+    , appendPathname('/refile/gc')
     )
 
     await fetch(req).then(ok)

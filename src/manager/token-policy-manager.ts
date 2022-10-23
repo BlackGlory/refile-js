@@ -1,6 +1,6 @@
 import { fetch } from 'extra-fetch'
 import { get, put, del } from 'extra-request'
-import { pathname, json } from 'extra-request/transformers'
+import { appendPathname, json } from 'extra-request/transformers'
 import { ok, toJSON } from 'extra-response'
 import { IRefileManagerRequestOptions, Base } from './base.js'
 
@@ -17,7 +17,7 @@ export class TokenPolicyManager extends Base {
   async getNamespaces(options: IRefileManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname('/admin/refile-with-token-policies')
+    , appendPathname('/admin/refile-with-token-policies')
     )
 
     return await fetch(req)
@@ -34,7 +34,7 @@ export class TokenPolicyManager extends Base {
   ): Promise<ITokenPolicy> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/token-policies`)
+    , appendPathname(`/admin/refile/${namespace}/token-policies`)
     )
 
     return await fetch(req)
@@ -52,7 +52,7 @@ export class TokenPolicyManager extends Base {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/token-policies/write-token-required`)
+    , appendPathname(`/admin/refile/${namespace}/token-policies/write-token-required`)
     , json(val)
     )
 
@@ -68,7 +68,7 @@ export class TokenPolicyManager extends Base {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/token-policies/write-token-required`)
+    , appendPathname(`/admin/refile/${namespace}/token-policies/write-token-required`)
     )
 
     await fetch(req).then(ok)
@@ -84,7 +84,7 @@ export class TokenPolicyManager extends Base {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/token-policies/read-token-required`)
+    , appendPathname(`/admin/refile/${namespace}/token-policies/read-token-required`)
     , json(val)
     )
 
@@ -100,7 +100,7 @@ export class TokenPolicyManager extends Base {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/token-policies/read-token-required`)
+    , appendPathname(`/admin/refile/${namespace}/token-policies/read-token-required`)
     )
 
     await fetch(req).then(ok)
@@ -116,7 +116,7 @@ export class TokenPolicyManager extends Base {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/token-policies/delete-token-required`)
+    , appendPathname(`/admin/refile/${namespace}/token-policies/delete-token-required`)
     , json(val)
     )
 
@@ -132,7 +132,7 @@ export class TokenPolicyManager extends Base {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , pathname(`/admin/refile/${namespace}/token-policies/delete-token-required`)
+    , appendPathname(`/admin/refile/${namespace}/token-policies/delete-token-required`)
     )
 
     await fetch(req).then(ok)
