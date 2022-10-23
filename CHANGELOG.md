@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.2](https://github.com/BlackGlory/refile-js/compare/v0.11.1...v0.11.2) (2022-10-23)
+
+
+### Bug Fixes
+
+* replace `pathname` with `appendPathname` ([98bf82b](https://github.com/BlackGlory/refile-js/commit/98bf82b9eff96b7b41cffa3032003ff028290170))
+
 ### [0.11.1](https://github.com/BlackGlory/refile-js/compare/v0.11.0...v0.11.1) (2022-10-21)
 
 ## [0.11.0](https://github.com/BlackGlory/refile-js/compare/v0.10.6...v0.11.0) (2022-10-21)
