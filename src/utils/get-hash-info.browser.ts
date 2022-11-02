@@ -1,9 +1,10 @@
 import { IHashInfo } from '@src/utils.js'
-import { toArrayAsync, map, toArray } from 'iterable-operator'
+import { toArrayAsync } from 'iterable-operator'
 import { isntString } from '@blackglory/types'
 import { HASH_BLOCK_SIZE } from './constants.js'
-import { splitHash, IProgressiveHash } from './split-hash.browser.js'
+import { splitHash, IProgressiveHash } from 'split-hash/whatwg'
 import { assert } from '@blackglory/errors'
+import { sha256 } from 'extra-compatible'
 
 export async function getHashInfo(blob: Blob | string): Promise<IHashInfo> {
   assert(isntString(blob), 'The function only accepts Blob on browser side')
@@ -11,7 +12,7 @@ export async function getHashInfo(blob: Blob | string): Promise<IHashInfo> {
   // TypeScript无法区分WHATWG的Blob和Node.js的Blob, 只好在此手动设置返回值类型.
   const stream = blob.stream() as unknown as ReadableStream
   const hashList = await getHashList(stream)
-  const hash = await mergeHash(hashList)
+  const hash = await sha256(hashList.join(''))
   return { hash, hashList }
 }
 
@@ -30,21 +31,7 @@ function createHash(): IProgressiveHash<string> {
       pos += buffer.length
     }
   , async digest(): Promise<string> {
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data.slice(0, pos))
-      return bufferToHex(hashBuffer)
+      return await sha256(data.slice(0, pos))
     }
   }
-}
-
-async function mergeHash(hashList: string[]): Promise<string> {
-  const message = hashList.join('')
-  const encoder = new TextEncoder()
-  const buffer = encoder.encode(message)
-  const hashBuffer = await crypto.subtle.digest('SHA-256', buffer)
-  return bufferToHex(hashBuffer)
-}
-
-function bufferToHex(buffer: ArrayBuffer): string {
-  const bytes = new Uint8Array(buffer)
-  return toArray(map(bytes, byte => byte.toString(16).padStart(2, '0'))).join('')
 }

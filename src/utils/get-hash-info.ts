@@ -1,18 +1,19 @@
 import * as fs from 'fs'
-import { splitHash, ProgressiveHash } from 'split-hash'
+import { splitHash, IProgressiveHash } from 'split-hash/nodejs'
 import * as crypto from 'crypto'
 import { toArrayAsync } from 'iterable-operator'
 import { IHashInfo } from '@src/utils.js'
 import { isString } from '@blackglory/types'
 import { HASH_BLOCK_SIZE } from './constants.js'
 import { assert } from '@blackglory/errors'
+import { sha256 } from 'extra-compatible'
 
 export async function getHashInfo(filename: string | Blob): Promise<IHashInfo> {
   assert(isString(filename), 'The function only accepts string on Node.js side')
 
   const stream = fs.createReadStream(filename)
   const hashList = await getHashList(stream)
-  const hash = mergeHash(hashList)
+  const hash = await sha256(hashList.join(''))
   return { hash, hashList }
 }
 
@@ -21,7 +22,7 @@ async function getHashList(stream: NodeJS.ReadableStream): Promise<string[]> {
   return hashList
 }
 
-function createHash(): ProgressiveHash<string> {
+function createHash(): IProgressiveHash<string> {
   const hash = crypto.createHash('sha256')
   return {
     update(buffer: Buffer): void {
@@ -31,10 +32,4 @@ function createHash(): ProgressiveHash<string> {
       return hash.digest('hex')
     }
   }
-}
-
-function mergeHash(hashList: string[]): string {
-  const hash = crypto.createHash('sha256')
-  hash.update(hashList.join(''))
-  return hash.digest('hex')
 }
