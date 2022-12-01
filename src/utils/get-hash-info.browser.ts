@@ -1,9 +1,9 @@
 import { IHashInfo } from '@src/utils.js'
 import { toArrayAsync } from 'iterable-operator'
-import { isntString } from '@blackglory/types'
+import { isntString } from '@blackglory/prelude'
 import { HASH_BLOCK_SIZE } from './constants.js'
 import { splitHash, IProgressiveHash } from 'split-hash/whatwg'
-import { assert } from '@blackglory/errors'
+import { assert } from '@blackglory/prelude'
 import { sha256 } from 'extra-compatible'
 
 export async function getHashInfo(blob: Blob | string): Promise<IHashInfo> {

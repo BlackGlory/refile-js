@@ -1,11 +1,13 @@
 import { fastify } from 'fastify'
 import multipart from '@fastify/multipart'
 import { badToken } from '@test/utils.js'
+import { assert } from '@blackglory/prelude'
 
 export function buildServer() {
-  const server = fastify()
+  const server = fastify({
+    forceCloseConnections: true
+  })
 
-  // @ts-ignore
   server.register(multipart)
 
   server.put<{
@@ -16,6 +18,7 @@ export function buildServer() {
     expect(req.params.hash).toBe('6dd7e8e932ea9d58555d7fee44a9b01a9bd7448e986636b728ee3711b01f37ce')
 
     const file = await req.file()
+    assert(file, 'file does not exist')
     const buffer = await file.toBuffer()
     const content = buffer.toString()
     expect(content).toBe('hello world\n')
@@ -47,6 +50,9 @@ export function buildServer() {
       id: string
       hash: string
     }
+    Querystring: {
+      token?: string
+    }
   }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
     if (badToken(req)) return reply.status(401).send()
 
@@ -59,6 +65,9 @@ export function buildServer() {
       id: string
       hash: string
     }
+    Querystring: {
+      token?: string
+    }
   }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
     if (badToken(req)) return reply.status(401).send()
 
@@ -70,6 +79,9 @@ export function buildServer() {
       namespace: string
       id: string
     }
+    Querystring: {
+      token?: string
+    }
   }>('/refile/namespaces/:namespace/items/:id', async (req, reply) => {
     if (badToken(req)) return reply.status(401).send()
 
@@ -80,29 +92,48 @@ export function buildServer() {
     Params: {
       namespace: string
     }
+    Querystring: {
+      token?: string
+    }
   }>('/refile/namespaces/:namespace', async (req, reply) => {
     if (badToken(req)) return reply.status(401).send()
 
     reply.status(204).send()
   })
 
-  server.get('/refile/namespaces', async (req, reply) => {
+  server.get<{
+    Querystring: {
+      token?: string
+    }
+  }>('/refile/namespaces', async (req, reply) => {
     reply.status(200).send(['namespace'])
   })
 
-  server.get('/refile/namespaces/:namespace/items', async (req, reply) => {
+  server.get<{
+    Querystring: {
+      token?: string
+    }
+  }>('/refile/namespaces/:namespace/items', async (req, reply) => {
     if (badToken(req)) return reply.status(401).send()
 
     reply.status(200).send(['id'])
   })
 
-  server.get('/refile/namespaces/:namespace/items/:id/files', async (req, reply) => {
+  server.get<{
+    Querystring: {
+      token?: string
+    }
+  }>('/refile/namespaces/:namespace/items/:id/files', async (req, reply) => {
     if (badToken(req)) return reply.status(401).send()
 
     reply.status(200).send(['hash'])
   })
 
-  server.get('/refile/files/:hash/namespaces/:namespace/items', async (req, reply) => {
+  server.get<{
+    Querystring: {
+      token?: string
+    }
+  }>('/refile/files/:hash/namespaces/:namespace/items', async (req, reply) => {
     if (badToken(req)) return reply.status(401).send()
 
     reply.status(200).send(['id'])

@@ -1,5 +1,5 @@
 import { Blob } from 'extra-fetch'
-import { isString } from '@blackglory/types'
+import { isString } from '@blackglory/prelude'
 import { readFile } from 'fs/promises'
 
 export async function getFile(fileOrFilename: Blob | string): Promise<Blob> {

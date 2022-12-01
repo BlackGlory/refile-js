@@ -7,7 +7,7 @@ import { ok, toJSON, toText } from 'extra-response'
 import { getHashInfo } from '@utils/get-hash-info.js'
 import { getFile } from '@utils/get-file.js'
 import { raceAbortSignals, timeoutSignal } from 'extra-abort'
-import { Falsy } from 'justypes'
+import { Falsy } from '@blackglory/prelude'
 import { expectedVersion } from '@src/utils.js'
 
 interface IFileInfo {

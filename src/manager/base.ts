@@ -2,7 +2,7 @@ import { IRequestOptionsTransformer } from 'extra-request'
 import { url, signal, keepalive, bearerAuth, header } from 'extra-request/transformers'
 import { timeoutSignal, raceAbortSignals } from 'extra-abort'
 import { IRefileManagerOptions } from './index.js'
-import { Falsy } from 'justypes'
+import { Falsy } from '@blackglory/prelude'
 
 export interface IRefileManagerRequestOptions {
   signal?: AbortSignal

@@ -3,9 +3,9 @@ import { splitHash, IProgressiveHash } from 'split-hash/nodejs'
 import * as crypto from 'crypto'
 import { toArrayAsync } from 'iterable-operator'
 import { IHashInfo } from '@src/utils.js'
-import { isString } from '@blackglory/types'
+import { isString } from '@blackglory/prelude'
 import { HASH_BLOCK_SIZE } from './constants.js'
-import { assert } from '@blackglory/errors'
+import { assert } from '@blackglory/prelude'
 import { sha256 } from 'extra-compatible'
 
 export async function getHashInfo(filename: string | Blob): Promise<IHashInfo> {

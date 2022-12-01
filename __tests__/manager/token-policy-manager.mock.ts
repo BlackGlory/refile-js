@@ -2,7 +2,9 @@ import { fastify } from 'fastify'
 import { badAuth, badJson } from '@test/utils.js'
 
 export function buildServer() {
-  const server = fastify()
+  const server = fastify({
+    forceCloseConnections: true
+  })
 
   server.get('/admin/refile-with-token-policies', async (req, reply) => {
     if (badAuth(req)) return reply.status(401).send()
