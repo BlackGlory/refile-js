@@ -3,4 +3,4 @@ export interface IHashInfo {
   hashList: string[]
 }
 
-export const expectedVersion = '0.6.0'
+export const expectedVersion = '^0.7.0'
