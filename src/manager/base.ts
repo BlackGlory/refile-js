@@ -3,14 +3,13 @@ import { url, signal, keepalive, bearerAuth, header } from 'extra-request/transf
 import { timeoutSignal, raceAbortSignals } from 'extra-abort'
 import { IRefileManagerOptions } from './index.js'
 import { Falsy } from '@blackglory/prelude'
+import { expectedVersion } from '@src/utils.js'
 
 export interface IRefileManagerRequestOptions {
   signal?: AbortSignal
   keepalive?: boolean
   timeout?: number | false
 }
-
-export const expectedVersion = '0.5.7'
 
 export class Base {
   constructor(private options: IRefileManagerOptions) {}
