@@ -13,7 +13,7 @@ export function buildServer() {
     Params: {
       hash: string
     }
-  }>('/refile/files/:hash', async (req, reply) => {
+  }>('/files/:hash', async (req, reply) => {
     expect(req.params.hash).toBe('6dd7e8e932ea9d58555d7fee44a9b01a9bd7448e986636b728ee3711b01f37ce')
 
     const file = await req.file()
@@ -25,7 +25,7 @@ export function buildServer() {
     reply.status(200).send()
   })
 
-  server.get('/refile/files/:hash', (req, reply) => {
+  server.get('/files/:hash', (req, reply) => {
     reply.status(200).send({
       hash: 'hash'
     , location: null
@@ -35,7 +35,7 @@ export function buildServer() {
 
   server.get<{
     Params: { hash: string }
-  }>('/refile/files/:hash/location', (req, reply) => {
+  }>('/files/:hash/location', (req, reply) => {
     if (req.params.hash === 'not-exist') {
       reply.status(404).send()
     } else {
@@ -52,7 +52,7 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
+  }>('/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
     reply.status(204).send()
   })
 
@@ -65,7 +65,7 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
+  }>('/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
     reply.status(204).send()
   })
 
@@ -77,7 +77,7 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/namespaces/:namespace/items/:id', async (req, reply) => {
+  }>('/namespaces/:namespace/items/:id', async (req, reply) => {
     reply.status(204).send()
   })
 
@@ -88,7 +88,7 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/namespaces/:namespace', async (req, reply) => {
+  }>('/namespaces/:namespace', async (req, reply) => {
     reply.status(204).send()
   })
 
@@ -96,7 +96,7 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/namespaces', async (req, reply) => {
+  }>('/namespaces', async (req, reply) => {
     reply.status(200).send(['namespace'])
   })
 
@@ -104,7 +104,7 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/namespaces/:namespace/items', async (req, reply) => {
+  }>('/namespaces/:namespace/items', async (req, reply) => {
     reply.status(200).send(['id'])
   })
 
@@ -112,7 +112,7 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/namespaces/:namespace/items/:id/files', async (req, reply) => {
+  }>('/namespaces/:namespace/items/:id/files', async (req, reply) => {
     reply.status(200).send(['hash'])
   })
 
@@ -120,11 +120,11 @@ export function buildServer() {
     Querystring: {
       token?: string
     }
-  }>('/refile/files/:hash/namespaces/:namespace/items', async (req, reply) => {
+  }>('/files/:hash/namespaces/:namespace/items', async (req, reply) => {
     reply.status(200).send(['id'])
   })
 
-  server.post('/refile/gc', async (req, reply) => {
+  server.post('/collect-garbage', async (req, reply) => {
     reply.status(204).send()
   })
 
