@@ -22,7 +22,6 @@ interface IFileInfo {
 
 interface IRefileClientOptions {
   server: string
-  token?: string
   basicAuth?: {
     username: string
     password: string
