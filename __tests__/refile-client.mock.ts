@@ -1,6 +1,5 @@
 import { fastify } from 'fastify'
 import multipart from '@fastify/multipart'
-import { badToken } from '@test/utils.js'
 import { assert } from '@blackglory/prelude'
 
 export function buildServer() {
@@ -54,8 +53,6 @@ export function buildServer() {
       token?: string
     }
   }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
-    if (badToken(req)) return reply.status(401).send()
-
     reply.status(204).send()
   })
 
@@ -69,8 +66,6 @@ export function buildServer() {
       token?: string
     }
   }>('/refile/namespaces/:namespace/items/:id/files/:hash', async (req, reply) => {
-    if (badToken(req)) return reply.status(401).send()
-
     reply.status(204).send()
   })
 
@@ -83,8 +78,6 @@ export function buildServer() {
       token?: string
     }
   }>('/refile/namespaces/:namespace/items/:id', async (req, reply) => {
-    if (badToken(req)) return reply.status(401).send()
-
     reply.status(204).send()
   })
 
@@ -96,8 +89,6 @@ export function buildServer() {
       token?: string
     }
   }>('/refile/namespaces/:namespace', async (req, reply) => {
-    if (badToken(req)) return reply.status(401).send()
-
     reply.status(204).send()
   })
 
@@ -114,8 +105,6 @@ export function buildServer() {
       token?: string
     }
   }>('/refile/namespaces/:namespace/items', async (req, reply) => {
-    if (badToken(req)) return reply.status(401).send()
-
     reply.status(200).send(['id'])
   })
 
@@ -124,8 +113,6 @@ export function buildServer() {
       token?: string
     }
   }>('/refile/namespaces/:namespace/items/:id/files', async (req, reply) => {
-    if (badToken(req)) return reply.status(401).send()
-
     reply.status(200).send(['hash'])
   })
 
@@ -134,8 +121,6 @@ export function buildServer() {
       token?: string
     }
   }>('/refile/files/:hash/namespaces/:namespace/items', async (req, reply) => {
-    if (badToken(req)) return reply.status(401).send()
-
     reply.status(200).send(['id'])
   })
 

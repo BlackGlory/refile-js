@@ -10,7 +10,7 @@ import { raceAbortSignals, timeoutSignal } from 'extra-abort'
 import { Falsy } from '@blackglory/prelude'
 import { expectedVersion } from '@src/utils.js'
 
-interface IFileInfo {
+export interface IFileInfo {
   hash: string
   location: string | null
   references: number
@@ -18,7 +18,6 @@ interface IFileInfo {
 
 export interface IRefileClientOptions {
   server: string
-  token?: string
   basicAuth?: {
     username: string
     password: string
@@ -29,13 +28,6 @@ export interface IRefileClientOptions {
 
 export interface IRefileClientRequestOptions {
   signal?: AbortSignal
-  token?: string
-  keepalive?: boolean
-  timeout?: number | false
-}
-
-export interface IRefileClientRequestOptionsWithoutToken {
-  signal?: AbortSignal
   keepalive?: boolean
   timeout?: number | false
 }
@@ -43,34 +35,12 @@ export interface IRefileClientRequestOptionsWithoutToken {
 export class RefileClient {
   constructor(private options: IRefileClientOptions) {}
 
-  private getCommonTransformers(
-    options: IRefileClientRequestOptions
-  ): Array<IRequestOptionsTransformer | Falsy> {
-    const token = options.token ?? this.options.token
-    const auth = this.options.basicAuth
-
-    return [
-      url(this.options.server)
-    , auth && basicAuth(auth.username, auth.password)
-    , token && searchParams({ token })
-    , signal(raceAbortSignals([
-        options.signal
-      , options.timeout !== false && (
-          (options.timeout && timeoutSignal(options.timeout)) ??
-          (this.options.timeout && timeoutSignal(this.options.timeout))
-        )
-      ]))
-    , (options.keepalive ?? this.options.keepalive) && keepalive()
-    , header('Accept-Version', expectedVersion)
-    ]
-  }
-
   /**
    * @throws {AbortError}
    */
   async uploadFile(
     blobOrFilename: Blob | string
-  , options: IRefileClientRequestOptionsWithoutToken = {}
+  , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const { hash, hashList } = await getHashInfo(blobOrFilename)
 
@@ -160,7 +130,7 @@ export class RefileClient {
   /**
    * @throws {AbortError}
    */
-  async removeReferencesByItem(
+  async removeReferencesByItemId(
     namespace: string
   , id: string
   , options: IRefileClientRequestOptions = {}
@@ -191,9 +161,7 @@ export class RefileClient {
   /**
    * @throws {AbortError}
    */
-  async getAllNamespaces(
-    options: IRefileClientRequestOptionsWithoutToken = {}
-  ): Promise<string[]> {
+  async getAllNamespaces(options: IRefileClientRequestOptions = {}): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
     , appendPathname('/refile/namespaces')
@@ -224,7 +192,7 @@ export class RefileClient {
   /**
    * @throws {AbortError}
    */
-  async getFileHashesByItem(
+  async getFileHashesByItemId(
     namespace: string
   , id: string
   , options: IRefileClientRequestOptions = {}
@@ -242,7 +210,7 @@ export class RefileClient {
   /**
    * @throws {AbortError}
    */
-  async getItemIdsByFile(
+  async getItemIdsByFileHash(
     fileHash: string
   , namespace: string
   , options: IRefileClientRequestOptions = {}
@@ -260,12 +228,32 @@ export class RefileClient {
   /**
    * @throws {AbortError}
    */
-  async collectGarbage(options: IRefileClientRequestOptionsWithoutToken = {}): Promise<void> {
+  async collectGarbage(options: IRefileClientRequestOptions = {}): Promise<void> {
     const req = post(
       ...this.getCommonTransformers(options)
     , appendPathname('/refile/gc')
     )
 
     await fetch(req).then(ok)
+  }
+
+  private getCommonTransformers(
+    options: IRefileClientRequestOptions
+  ): Array<IRequestOptionsTransformer | Falsy> {
+    const auth = this.options.basicAuth
+
+    return [
+      url(this.options.server)
+    , auth && basicAuth(auth.username, auth.password)
+    , signal(raceAbortSignals([
+        options.signal
+      , options.timeout !== false && (
+          (options.timeout && timeoutSignal(options.timeout)) ??
+          (this.options.timeout && timeoutSignal(this.options.timeout))
+        )
+      ]))
+    , (options.keepalive ?? this.options.keepalive) && keepalive()
+    , header('Accept-Version', expectedVersion)
+    ]
   }
 }

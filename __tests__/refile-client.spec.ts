@@ -1,13 +1,13 @@
-import { buildServer } from '@test/client.mock.js'
-import { RefileClient } from '@src/client.js'
-import { TOKEN, startService, stopService, getAddress } from '@test/utils.js'
+import { buildServer } from '@test/refile-client.mock.js'
+import { RefileClient } from '@src/refile-client.js'
+import { startService, stopService, getAddress } from '@test/utils.js'
 import { fileURLToPath } from 'url'
 
 beforeAll(() => startService(buildServer))
 afterAll(stopService)
 
 describe('RefileClient', () => {
-  test('uploadFile(file: Blob | string): Promise<void>', async () => {
+  test('uploadFile', async () => {
     const client = createClient()
 
     const result = await client.uploadFile(
@@ -17,7 +17,7 @@ describe('RefileClient', () => {
     expect(result).toBeUndefined()
   })
 
-  test('getFileInfo(hash: string): Promise<RefileClientRequestOptions>', async () => {
+  test('getFileInfo', async () => {
     const client = createClient()
     const hash = 'hash'
 
@@ -30,7 +30,7 @@ describe('RefileClient', () => {
     })
   })
 
-  describe('getFileLocation(hash: string): Promise<string | undefined>', () => {
+  describe('getFileLocation', () => {
     describe('200', () => {
       it('returns string', async () => {
         const client = createClient()
@@ -54,7 +54,7 @@ describe('RefileClient', () => {
     })
   })
 
-  test('setReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
+  test('setReference', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
@@ -65,7 +65,7 @@ describe('RefileClient', () => {
     expect(result).toBeUndefined()
   })
 
-  test('removeReference(namespace: string, id: string, fileHash: string): Promise<void>', async () => {
+  test('removeReference', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
@@ -76,17 +76,17 @@ describe('RefileClient', () => {
     expect(result).toBeUndefined()
   })
 
-  test('removeReferencesByItem(namespace: string, id: string): Promise<void>', async () => {
+  test('removeReferencesByItemId', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
 
-    const result = await client.removeReferencesByItem(namespace, id)
+    const result = await client.removeReferencesByItemId(namespace, id)
 
     expect(result).toBeUndefined()
   })
 
-  test('removeReferencesByNamespace(namespace: string): Promise<void>', async () => {
+  test('removeReferencesByNamespace', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
@@ -95,7 +95,7 @@ describe('RefileClient', () => {
     expect(result).toBeUndefined()
   })
 
-  test('getAllNamespaces(): Promise<string[]>', async () => {
+  test('getAllNamespaces', async () => {
     const client = createClient()
 
     const result = await client.getAllNamespaces()
@@ -103,7 +103,7 @@ describe('RefileClient', () => {
     expect(result).toEqual(['namespace'])
   })
 
-  test('getAllItemIds(namespace: string): Promise<string[]>', async () => {
+  test('getAllItemIds', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
@@ -112,27 +112,27 @@ describe('RefileClient', () => {
     expect(result).toEqual(['id'])
   })
 
-  test('getFileHashesByItem(namespace: string, id: string): Promise<string[]>', async () => {
+  test('getFileHashesByItemId', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const id = 'id'
 
-    const result = await client.getFileHashesByItem(namespace, id)
+    const result = await client.getFileHashesByItemId(namespace, id)
 
     expect(result).toEqual(['hash'])
   })
 
-  test('getItemIdsByFile(fileHash: string, namespace: string): Promise<string[]>', async () => {
+  test('getItemIdsByFile', async () => {
     const client = createClient()
     const fileHash = 'hash'
     const namespace = 'namespace'
 
-    const result = await client.getItemIdsByFile(fileHash, namespace)
+    const result = await client.getItemIdsByFileHash(fileHash, namespace)
 
     expect(result).toEqual(['id'])
   })
 
-  test('collectGarbage(): Promise<void>', async () => {
+  test('collectGarbage', async () => {
     const client = createClient()
 
     const result = await client.collectGarbage()
@@ -142,8 +142,5 @@ describe('RefileClient', () => {
 })
 
 function createClient() {
-  return new RefileClient({
-    server: getAddress()
-  , token: TOKEN
-  })
+  return new RefileClient({ server: getAddress() })
 }
