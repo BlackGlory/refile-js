@@ -39,41 +39,17 @@ interface IRefileClientRequestOptions {
 class RefileClient {
   constructor(options: IRefileClientOptions)
 
-  collectGarbage(options?: IRefileClientRequestOptions): Promise<void>
-
-  getFileInfo(
-    fileHash: string
-  , options?: IRefileClientRequestOptions
-  ): Promise<IFileInfo>
-
-  getFileLocation(
-    fileHash: string
-  , options?: IRefileClientRequestOptions
-  ): Promise<string | undefined>
-
-  getAllNamespaces(options?: IRefileClientRequestOptions): Promise<string[]>
-
-  getAllItemIds(
-    namespace: string
-  , options?: IRefileClientRequestOptions
-  ): Promise<string[]>
-
-  getFileHashesByItemId(
-    namespace: string
-  , itemId: string
-  , options?: IRefileClientRequestOptions
-  ): Promise<string[]>
-
-  getItemIdsByFileHash(
-    fileHash: string
-  , namespace: string
-  , options?: IRefileClientRequestOptions
-  ): Promise<string[]>
-
   uploadFile(
     blobOrFilename: Blob | string
   , options?: IRefileClientRequestOptions
   ): Promise<void>
+
+  getFileInfo(hash: string, options?: IRefileClientRequestOptions): Promise<IFileInfo>
+
+  getFileLocation(
+    hash: string
+  , options?: IRefileClientRequestOptions
+  ): Promise<string | undefined>
 
   setReference(
     namespace: string
@@ -99,5 +75,23 @@ class RefileClient {
     namespace: string
   , options?: IRefileClientRequestOptions
   ): Promise<void>
+
+  getAllNamespaces(options?: IRefileClientRequestOptions): Promise<string[]>
+
+  getAllItemIds(namespace: string, options?: IRefileClientRequestOptions): Promise<string[]>
+
+  getFileHashesByItemId(
+    namespace: string
+  , itemId: string
+  , options?: IRefileClientRequestOptions
+  ): Promise<string[]>
+
+  getItemIdsByFileHash(
+    fileHash: string
+  , namespace: string
+  , options?: IRefileClientRequestOptions
+  ): Promise<string[]>
+
+  collectGarbage(options?: IRefileClientRequestOptions): Promise<void>
 }
 ```

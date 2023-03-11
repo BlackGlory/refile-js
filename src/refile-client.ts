@@ -35,9 +35,6 @@ export interface IRefileClientRequestOptions {
 export class RefileClient {
   constructor(private options: IRefileClientOptions) {}
 
-  /**
-   * @throws {AbortError}
-   */
   async uploadFile(
     blobOrFilename: Blob | string
   , options: IRefileClientRequestOptions = {}
@@ -54,9 +51,6 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async getFileInfo(
     hash: string
   , options: IRefileClientRequestOptions = {}
@@ -71,9 +65,6 @@ export class RefileClient {
       .then(toJSON) as IFileInfo
   }
 
-  /**
-   * @throws {AbortError} 
-   */
   async getFileLocation(
     hash: string
   , options: IRefileClientRequestOptions = {}
@@ -93,59 +84,47 @@ export class RefileClient {
     }
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async setReference(
     namespace: string
-  , id: string
+  , itemId: string
   , fileHash: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${id}/files/${fileHash}`)
+    , appendPathname(`/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
     )
 
     await fetch(req).then(ok)
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async removeReference(
     namespace: string
-  , id: string
+  , itemId: string
   , fileHash: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${id}/files/${fileHash}`)
+    , appendPathname(`/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
     )
 
     await fetch(req).then(ok)
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async removeReferencesByItemId(
     namespace: string
-  , id: string
+  , itemId: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${id}`)
+    , appendPathname(`/namespaces/${namespace}/items/${itemId}`)
     )
 
     await fetch(req).then(ok)
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async removeReferencesByNamespace(
     namespace: string
   , options: IRefileClientRequestOptions = {}
@@ -158,9 +137,6 @@ export class RefileClient {
     await fetch(req).then(ok)
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async getAllNamespaces(options: IRefileClientRequestOptions = {}): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
@@ -172,9 +148,6 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async getAllItemIds(
     namespace: string
   , options: IRefileClientRequestOptions = {}
@@ -189,17 +162,14 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async getFileHashesByItemId(
     namespace: string
-  , id: string
+  , itemId: string
   , options: IRefileClientRequestOptions = {}
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${id}/files`)
+    , appendPathname(`/namespaces/${namespace}/items/${itemId}/files`)
     )
 
     return await fetch(req)
@@ -207,9 +177,6 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async getItemIdsByFileHash(
     fileHash: string
   , namespace: string
@@ -225,9 +192,6 @@ export class RefileClient {
       .then(toJSON) as string[]
   }
 
-  /**
-   * @throws {AbortError}
-   */
   async collectGarbage(options: IRefileClientRequestOptions = {}): Promise<void> {
     const req = post(
       ...this.getCommonTransformers(options)
