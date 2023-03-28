@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.15.1](https://github.com/BlackGlory/refile-js/compare/v0.15.0...v0.15.1) (2023-03-28)
+
+
+### Features
+
+* add Refile^0.10.0 support ([4be2d49](https://github.com/BlackGlory/refile-js/commit/4be2d49c8e064224353bff58378cd25d8a728cd8))
+
 ## [0.15.0](https://github.com/BlackGlory/refile-js/compare/v0.14.0...v0.15.0) (2023-02-09)
 
 
