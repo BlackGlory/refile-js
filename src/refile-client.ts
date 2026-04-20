@@ -92,7 +92,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = put(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
+    , appendPathname(`/namespaces/${encodeURIComponent(namespace)}/items/${encodeURIComponent(itemId)}/files/${fileHash}`)
     )
 
     await fetch(req).then(ok)
@@ -106,7 +106,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${itemId}/files/${fileHash}`)
+    , appendPathname(`/namespaces/${encodeURIComponent(namespace)}/items/${encodeURIComponent(itemId)}/files/${fileHash}`)
     )
 
     await fetch(req).then(ok)
@@ -119,7 +119,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${itemId}`)
+    , appendPathname(`/namespaces/${encodeURIComponent(namespace)}/items/${encodeURIComponent(itemId)}`)
     )
 
     await fetch(req).then(ok)
@@ -131,7 +131,7 @@ export class RefileClient {
   ): Promise<void> {
     const req = del(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}`)
+    , appendPathname(`/namespaces/${encodeURIComponent(namespace)}`)
     )
 
     await fetch(req).then(ok)
@@ -154,7 +154,7 @@ export class RefileClient {
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items`)
+    , appendPathname(`/namespaces/${encodeURIComponent(namespace)}/items`)
     )
 
     return await fetch(req)
@@ -169,7 +169,7 @@ export class RefileClient {
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/namespaces/${namespace}/items/${itemId}/files`)
+    , appendPathname(`/namespaces/${encodeURIComponent(namespace)}/items/${encodeURIComponent(itemId)}/files`)
     )
 
     return await fetch(req)
@@ -184,7 +184,7 @@ export class RefileClient {
   ): Promise<string[]> {
     const req = get(
       ...this.getCommonTransformers(options)
-    , appendPathname(`/files/${fileHash}/namespaces/${namespace}/items`)
+    , appendPathname(`/files/${fileHash}/namespaces/${encodeURIComponent(namespace)}/items`)
     )
 
     return await fetch(req)
