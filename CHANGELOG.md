@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.15.3](https://github.com/BlackGlory/refile-js/compare/v0.15.2...v0.15.3) (2026-04-20)
+
+
+### Bug Fixes
+
+* encode namespaces and item ids ([5d2482c](https://github.com/BlackGlory/refile-js/commit/5d2482c09c5d18f37fc0167059e03e3168fcccaf))
+
 ### [0.15.2](https://github.com/BlackGlory/refile-js/compare/v0.15.1...v0.15.2) (2023-06-11)
 
 
