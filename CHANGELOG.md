@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.15.4](https://github.com/BlackGlory/refile-js/compare/v0.15.3...v0.15.4) (2026-05-23)
+
+
+### Features
+
+* **get-hash-info.browser:** improve performance ([01980fe](https://github.com/BlackGlory/refile-js/commit/01980fef0a3adef39defac8d471b75c61ce973fb))
+
 ### [0.15.3](https://github.com/BlackGlory/refile-js/compare/v0.15.2...v0.15.3) (2026-04-20)
 
 
