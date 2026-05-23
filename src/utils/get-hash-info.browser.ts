@@ -22,16 +22,16 @@ async function getHashList(stream: ReadableStream) {
 }
 
 function createHash(): IProgressiveHash<string> {
-  let pos = 0
+  let offset = 0
   const data = new Uint8Array(HASH_BLOCK_SIZE)
 
   return {
     update(buffer: Uint8Array): void {
-      buffer.forEach((x, i) => data[pos + i] = x)
-      pos += buffer.length
+      buffer.set(data, offset)
+      offset += buffer.length
     }
   , async digest(): Promise<string> {
-      return await sha256(data.slice(0, pos))
+      return await sha256(data.slice(0, offset))
     }
   }
 }
